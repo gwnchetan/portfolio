@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chetan — Dev & Security</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/sheryjs/dist/Shery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="bg-three" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></div>
+    <!-- Loader -->
+    <div class="loader-overlay" id="loader-overlay">
+        <!-- Techy Shutters -->
+        <div class="shutter"></div>
+        <div class="shutter"></div>
+        <div class="shutter"></div>
+        <div class="shutter"></div>
+        <div class="shutter"></div>
+
+        <div class="loader-content">
+            <h1 class="loader-logo" id="loader-logo">CHETAN</h1>
+            <div class="loader-bar">
+                <div class="loader-progress" id="loader-progress"></div>
+            </div>
+            <div class="loader-info" id="loader-info">
+                <span class="loader-status" id="loader-status">Initializing...</span>
+                <span class="loader-text" id="loader-text">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cursor handled by Shery.js -->
+
+    <!-- Transition Overlay -->
+    <div class="mode-overlay" id="mode-overlay"></div>
+
+
+
+    <!-- Navbar -->
+    <nav>
+        <a href="#" class="nav-logo">C/</a>
+        <ul class="nav-right">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><button class="mode-toggle" id="modeToggle">⚡ Cyber Mode</button></li>
+        </ul>
+    </nav>
+
+    <!-- Modal Removed in favor of project.html redirects -->
+
+    <!-- ===== WEB DEV MODE ===== -->
+    <div id="webdev-content">
+
+        <section class="hero">
+            <div class="hero-content">
+                <p class="hero-tag">Full Stack Developer</p>
+                <h1 class="hero-name">CHETAN</h1>
+                <p class="hero-sub">Building backends, breaking security — BCA student turning real ideas into real
+                    systems.</p>
+            </div>
+            <div class="hero-visual">
+                <div class="glass-card">
+                    <div class="glass-header">
+                        <span>system_status.js</span>
+                        <span>utf-8</span>
+                    </div>
+                    <div class="glass-body">
+                        <code>
+                            <span class="cm">// Current configuration</span><br>
+                            <span class="kw">const</span> developer = {<br>
+                            &nbsp;&nbsp;name: <span class="str">'Chetan'</span>,<br>
+                            &nbsp;&nbsp;role: <span class="str">'Full Stack'</span>,<br>
+                            &nbsp;&nbsp;focus: [<span class="str">'Node.js'</span>, <span class="str">'React'</span>, <span class="str">'Sec'</span>],<br>
+                            &nbsp;&nbsp;status: <span class="str">'Building N.O.V.A'</span><br>
+                            };<br>
+                            <br>
+                            <span class="fn">initializeProject</span>(developer);
+                        </code>
+                    </div>
+                </div>
+            </div>
+            <span class="hero-scroll">Scroll Down</span>
+        </section>
+
+        <section class="tech-marquee-section">
+            <div class="marquee-container">
+                <div class="marquee-track tech-marquee-track"></div>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="reveal">
+                <p class="section-eyebrow">01 — About</p>
+                <h2 class="section-title">WHO I AM</h2>
+                <p class="about-text">
+                    BCA student with a serious bias for building things. My stack lives in the backend — Node.js,
+                    Express, MongoDB, Flask — but I know my way around a React frontend too.<br><br>
+                    Parallel to web dev, I'm actively moving into cybersecurity. Not a casual interest. I'm building
+                    N.O.V.A., a privacy-first local AI agent on Kali Linux, and grinding TryHackMe and HackTheBox
+                    hands-on.
+                </p>
+            </div>
+            <div class="stats-grid reveal">
+                <div>
+                    <div class="stat-val">4+</div>
+                    <div class="stat-label">Projects Built</div>
+                </div>
+                <div>
+                    <div class="stat-val">8+</div>
+                    <div class="stat-label">Technologies</div>
+                </div>
+                <div>
+                    <div class="stat-val">2</div>
+                    <div class="stat-label">Domains</div>
+                </div>
+                <div>
+                    <div class="stat-val">∞</div>
+                    <div class="stat-label">Things to Learn</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills" id="skills">
+            <div class="skills-header reveal">
+                <p class="section-eyebrow">02 — Skills</p>
+                <h2 class="section-title">WHAT I USE</h2>
+            </div>
+            <div class="skills-grid" id="wd-skills"></div>
+        </section>
+
+        <section class="projects" id="projects">
+            <div class="projects-header reveal">
+                <p class="section-eyebrow">03 — Projects</p>
+                <h2 class="section-title">WHAT I BUILT</h2>
+            </div>
+            <div class="projects-grid" id="wd-projects-grid"></div>
+        </section>
+
+        <section class="contact" id="contact">
+            <h2 class="contact-big reveal">LET'S<br>TALK</h2>
+            <div class="contact-links reveal">
+                <a href="mailto:your@email.com" class="contact-link">Email</a>
+                <a href="https://github.com/yourgithub" target="_blank" class="contact-link">GitHub</a>
+                <a href="https://linkedin.com/in/yourlinkedin" target="_blank" class="contact-link">LinkedIn</a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== CYBER MODE ===== -->
+    <div id="cyber-content" style="display:none;">
+
+        <section class="hero">
+            <div class="hero-content">
+                <p class="hero-tag">Security Researcher</p>
+                <h1 class="hero-name">CHETAN</h1>
+                <p class="hero-sub">// Breaking things to understand them.<br>// Web app security | Recon | Offensive
+                    tooling</p>
+            </div>
+            <div class="hero-visual">
+                <div class="terminal-card">
+                    <div class="terminal-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="title">root@nova:~</span>
+                    </div>
+                    <div class="terminal-body">
+                        <p>> nmap -sV -T4 target.local</p>
+                        <p class="cm">Starting Nmap 7.93 at 2026-05-19</p>
+                        <p class="success">Host is up (0.0020s latency).</p>
+                        <p>> initializing N.O.V.A module...</p>
+                        <p class="warning">[!] Access Granted. Intercepting...</p>
+                        <p>_</p>
+                    </div>
+                </div>
+            </div>
+            <span class="hero-scroll">Scroll Down</span>
+        </section>
+
+        <section class="tech-marquee-section">
+            <div class="marquee-container">
+                <div class="marquee-track tech-marquee-track"></div>
+            </div>
+        </section>
+
+        <section class="about" id="cyber-about">
+            <div class="reveal">
+                <p class="section-eyebrow">01 — Profile</p>
+                <h2 class="section-title">THREAT<br>PROFILE</h2>
+                <p class="about-text">
+                    > Specialization: Web App Security<br>
+                    > Training: TryHackMe / HackTheBox / PicoCTF<br>
+                    > Tools: Burp Suite, Nmap, Kali Linux<br>
+                    > Focus: Offensive security + defensive thinking<br>
+                    > Building: N.O.V.A. — local AI agent for Kali
+                </p>
+            </div>
+            <div class="stats-grid reveal">
+                <div>
+                    <div class="stat-val">CTF</div>
+                    <div class="stat-label">Active Participant</div>
+                </div>
+                <div>
+                    <div class="stat-val">THM</div>
+                    <div class="stat-label">TryHackMe</div>
+                </div>
+                <div>
+                    <div class="stat-val">HTB</div>
+                    <div class="stat-label">HackTheBox</div>
+                </div>
+                <div>
+                    <div class="stat-val">WIP</div>
+                    <div class="stat-label">CompTIA Sec+</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills" id="cyber-skills">
+            <div class="skills-header reveal">
+                <p class="section-eyebrow">02 — Arsenal</p>
+                <h2 class="section-title">TOOLS &<br>TECHNIQUES</h2>
+            </div>
+            <div class="skills-grid" id="cy-skills"></div>
+        </section>
+
+        <section class="projects" id="cyber-projects">
+            <div class="projects-header reveal">
+                <p class="section-eyebrow">03 — Operations</p>
+                <h2 class="section-title">WHAT I<br>BUILT</h2>
+            </div>
+            <div class="projects-grid" id="cy-projects-grid"></div>
+        </section>
+
+        <section class="contact" id="cyber-contact">
+            <h2 class="contact-big reveal">MAKE<br>CONTACT</h2>
+            <div class="contact-links reveal">
+                <a href="mailto:your@email.com" class="contact-link">Email</a>
+                <a href="https://github.com/yourgithub" target="_blank" class="contact-link">GitHub</a>
+                <a href="https://linkedin.com/in/yourlinkedin" target="_blank" class="contact-link">LinkedIn</a>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <span>© 2025 Chetan</span>
+        <span id="footer-mode">Web Dev Mode</span>
+    </footer>
+
+
+
+    <script src="js/main.js" defer></script>
+    <script src="js/particles.js" defer></script>
+</body>
+
+</html>
