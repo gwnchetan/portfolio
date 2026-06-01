@@ -1,8 +1,35 @@
 // ============================================================
 // DATA
 // ============================================================
-const wdSkills = ['Node.js', 'Express', 'React', 'Python', 'Flask', 'MongoDB', 'Socket.IO', 'JWT Auth', 'REST APIs', 'Redux', 'Git', 'Linux'];
-const cySkills = ['Kali Linux', 'Burp Suite', 'Nmap', 'Wireshark', 'Web App Sec', 'OWASP Top 10', 'Recon', 'Python Scripts', 'Networking', 'SQLi / XSS', 'OSINT', 'Metasploit'];
+const wdSkills = [
+    { name: 'Node.js', icon: 'ph-hexagon' },
+    { name: 'Express', icon: 'ph-file-code' },
+    { name: 'React', icon: 'ph-atom' },
+    { name: 'Python', icon: 'ph-code' },
+    { name: 'Flask', icon: 'ph-flask' },
+    { name: 'MongoDB', icon: 'ph-database' },
+    { name: 'Socket.IO', icon: 'ph-share-network' },
+    { name: 'JWT Auth', icon: 'ph-lock-key' },
+    { name: 'REST APIs', icon: 'ph-plugs' },
+    { name: 'Redux', icon: 'ph-arrows-clockwise' },
+    { name: 'Git', icon: 'ph-git-branch' },
+    { name: 'Linux', icon: 'ph-linux-logo' }
+];
+
+const cySkills = [
+    { name: 'Kali Linux', icon: 'ph-linux-logo' },
+    { name: 'Burp Suite', icon: 'ph-spider' },
+    { name: 'Nmap', icon: 'ph-radar' },
+    { name: 'Wireshark', icon: 'ph-waves' },
+    { name: 'Web App Sec', icon: 'ph-shield-check' },
+    { name: 'OWASP Top 10', icon: 'ph-warning' },
+    { name: 'Recon', icon: 'ph-binoculars' },
+    { name: 'Python Scripts', icon: 'ph-terminal' },
+    { name: 'Networking', icon: 'ph-hard-drives' },
+    { name: 'SQLi / XSS', icon: 'ph-code' },
+    { name: 'OSINT', icon: 'ph-globe-hemisphere-west' },
+    { name: 'Metasploit', icon: 'ph-skull' }
+];
 
 const wdProjects = [
     {
@@ -63,7 +90,10 @@ const cyProjects = [
 // ============================================================
 function renderSkills(data, id) {
     document.getElementById(id).innerHTML = data.map(s =>
-        `<div class="skill-item reveal">${s}</div>`
+        `<div class="skill-item reveal">
+            <i class="ph ${s.icon} skill-icon"></i>
+            <span class="skill-name">${s.name}</span>
+        </div>`
     ).join('');
 }
 renderSkills(wdSkills, 'wd-skills');
@@ -101,7 +131,52 @@ function renderCards(data, containerId) {
         `;
     }).join('');
 }
-renderCards(wdProjects, 'wd-projects-grid');
+
+function renderTimelineProjects(data, containerId) {
+    const c = document.getElementById(containerId);
+    
+    let html = `
+    <div class="timeline-container">
+        <div class="timeline-line"></div>
+        <div class="timeline-indicator"></div>
+        <div class="timeline-cards">
+    `;
+
+    html += data.map((p, i) => {
+        const urlId = p.name.toLowerCase().replace(/\s+/g, '-');
+        const side = i % 2 === 0 ? 'left' : 'right';
+        const num = (i + 1).toString().padStart(2, '0');
+        
+        return `
+        <div class="timeline-card-wrapper ${side}">
+            <div class="timeline-connector"></div>
+            <a href="project.html?id=${urlId}" class="timeline-card">
+                <div class="timeline-card-header">
+                    <span class="timeline-number">${num}</span>
+                    <span class="timeline-arrow">↗</span>
+                </div>
+                <div class="timeline-canvas-container" id="canvas-${urlId}" data-project="${p.name}">
+                </div>
+                <div class="timeline-card-body">
+                    <h3 class="timeline-name">${p.name}</h3>
+                    <p class="timeline-desc">${p.desc}</p>
+                    <div class="timeline-stack">
+                        ${p.stack.map(s => `<span class="timeline-stack-tag">${s}</span>`).join('')}
+                    </div>
+                </div>
+            </a>
+        </div>
+        `;
+    }).join('');
+
+    html += `
+        </div>
+    </div>
+    `;
+    c.innerHTML = html;
+}
+
+renderTimelineProjects(wdProjects, 'wd-projects-grid');
 renderCards(cyProjects, 'cy-projects-grid');
 
 // ============================================================
@@ -110,16 +185,14 @@ renderCards(cyProjects, 'cy-projects-grid');
 function initScrollCardsAnimation() {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Clean up any existing ScrollTriggers to prevent leaks and duplication
     ScrollTrigger.getAll().forEach(t => {
         if (t.vars.trigger && (t.vars.trigger.classList.contains('project-card-wrapper') || t.vars.trigger.classList.contains('project-card'))) {
             t.kill();
         }
     });
 
-    const wrappers = document.querySelectorAll('.project-card-wrapper');
+    const wrappers = document.querySelectorAll('#cy-projects-grid .project-card-wrapper');
     wrappers.forEach(wrapper => {
-        // Set the 3D perspective and starting values for the scroll expansion
         gsap.set(wrapper, {
             transformOrigin: "top center",
             scale: 0.88,
@@ -127,7 +200,6 @@ function initScrollCardsAnimation() {
             y: 80
         });
 
-        // Bind the scroll-linked GSAP scale and flatten animation
         gsap.to(wrapper, {
             scale: 1.0,
             rotationX: 0,
@@ -135,15 +207,131 @@ function initScrollCardsAnimation() {
             ease: "none",
             scrollTrigger: {
                 trigger: wrapper,
-                start: "top 95%",   // When the card top enters the bottom of screen
-                end: "top 25%",     // Fully expanded when top of card is at 25% from top of screen
-                scrub: 1.2,         // Smooth link to scrolling speed
+                start: "top 95%",
+                end: "top 25%",
+                scrub: 1.2,
                 invalidateOnRefresh: true
             }
         });
     });
 }
 initScrollCardsAnimation();
+
+// ============================================================
+// TIMELINE GSAP ANIMATION
+// ============================================================
+function initTimelineAnimation() {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    const container = document.querySelector('.timeline-container');
+    if (!container) return;
+
+    const indicator = document.querySelector('.timeline-indicator');
+    const cards = document.querySelectorAll('.timeline-card-wrapper');
+
+    // Indicator scrolling down the line
+    gsap.to(indicator, {
+        top: "100%",
+        ease: "none",
+        scrollTrigger: {
+            trigger: container,
+            start: "top center",
+            end: "bottom center",
+            scrub: true
+        }
+    });
+
+    // Cards sliding in
+    cards.forEach(card => {
+        const isLeft = card.classList.contains('left');
+        
+        gsap.fromTo(card, 
+            { 
+                x: isLeft ? -100 : 100, 
+                opacity: 0 
+            },
+            {
+                x: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 75%", // Triggers when top of card hits 75% down viewport
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
+    });
+}
+
+// ============================================================
+// THREE.JS TIMELINE CANVASES
+// ============================================================
+let timelineRenderers = [];
+
+function initProject3DScenes() {
+    const containers = document.querySelectorAll('.timeline-canvas-container');
+    if (containers.length === 0) return;
+
+    // Clean up old renderers if re-initializing
+    timelineRenderers.forEach(r => r.dispose());
+    timelineRenderers = [];
+
+    const scenes = [];
+
+    containers.forEach(container => {
+        container.innerHTML = ''; // clear
+
+        const width = container.clientWidth || 300;
+        const height = container.clientHeight || 200;
+
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color('#111111');
+
+        const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+        camera.position.z = 4;
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        const material = new THREE.MeshBasicMaterial({ color: 0xff5500, wireframe: true });
+        let geometry;
+        const projName = container.getAttribute('data-project');
+
+        if (projName === 'chatterBOX') geometry = new THREE.TorusGeometry(1, 0.4, 16, 32);
+        else if (projName === 'Movie Times') geometry = new THREE.SphereGeometry(1.2, 16, 16);
+        else if (projName === 'logdrop') geometry = new THREE.BoxGeometry(1.5, 1.5, 1.5);
+        else if (projName === 'N.O.V.A.') geometry = new THREE.IcosahedronGeometry(1.2, 0);
+        else geometry = new THREE.BoxGeometry(1, 1, 1);
+
+        const mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+
+        scenes.push({ scene, camera, renderer, mesh });
+        timelineRenderers.push(renderer);
+    });
+
+    function animate() {
+        requestAnimationFrame(animate);
+        scenes.forEach(({ scene, camera, renderer, mesh }) => {
+            mesh.rotation.x += 0.005;
+            mesh.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        });
+    }
+    animate();
+}
+
+// Ensure it initializes when DOM is ready
+window.addEventListener('DOMContentLoaded', () => {
+    // Other inits might already exist, but we must call ours
+    initTimelineAnimation();
+    // Delay 3D init slightly to ensure container dimensions are calculated
+    setTimeout(initProject3DScenes, 100);
+});
 
 
 
@@ -191,6 +379,8 @@ document.getElementById('modeToggle').addEventListener('click', () => {
             initReveal();
             initTiltEffect();
             initScrollCardsAnimation();
+            initTimelineAnimation();
+            setTimeout(initProject3DScenes, 100);
             if (window.particleSetMode) window.particleSetMode(isCyber ? 'cyber' : 'dev');
 
             // Recalculate ScrollTrigger positions after layout toggle

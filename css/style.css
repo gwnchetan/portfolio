@@ -385,32 +385,127 @@ body.cyber-mode .about-text {
 .stats-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: 20px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 30px 24px;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), background 0.4s, border-color 0.4s, box-shadow 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 85, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(255, 85, 0, 0.05);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    color: #ff5500;
+    margin-bottom: 16px;
+    opacity: 0.8;
 }
 
 .stat-val {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 3.2rem;
-    color: #ff5500;
+    color: transparent;
+    background: linear-gradient(135deg, #f0f0f0, #ff5500);
+    -webkit-background-clip: text;
+    background-clip: text;
     line-height: 1;
-    transition: color 0.4s;
-}
-
-body.cyber-mode .stat-val {
-    color: #00ff41;
+    transition: all 0.4s;
 }
 
 .stat-label {
     font-size: 0.72rem;
-    color: #444;
+    color: #888;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    margin-top: 6px;
+    margin-top: 8px;
+}
+
+/* Cyber Mode Stat Cards */
+body.cyber-mode .stat-card {
+    background: #050505;
+    border: 1px solid #112211;
+    border-radius: 4px;
+    box-shadow: inset 0 0 15px rgba(0, 255, 65, 0.02);
+}
+
+body.cyber-mode .stat-card::before,
+body.cyber-mode .stat-card::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid #00ff41;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+body.cyber-mode .stat-card::before { top: 0; left: 0; border-right: none; border-bottom: none; }
+body.cyber-mode .stat-card::after { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+body.cyber-mode .stat-card:hover {
+    transform: scale(1.02);
+    border-color: #00ff41;
+    box-shadow: inset 0 0 20px rgba(0, 255, 65, 0.08);
+}
+
+body.cyber-mode .stat-card:hover::before,
+body.cyber-mode .stat-card:hover::after {
+    opacity: 1;
+}
+
+body.cyber-mode .stat-icon {
+    color: #00ff41;
+}
+
+body.cyber-mode .stat-val {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.6rem;
+    background: none;
+    -webkit-text-fill-color: initial;
+    color: #00ff41;
+    text-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
+}
+
+body.cyber-mode .stat-label {
+    color: #5a7a5a;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+/* Cyber Terminal Style Text */
+.terminal-style {
+    font-family: 'Share Tech Mono', monospace;
+    color: #00ff41 !important;
+    background: #020502;
+    padding: 24px;
+    border-left: 3px solid #00ff41;
+    line-height: 1.8;
+}
+
+.blinking-cursor {
+    animation: blink-cursor 1s step-end infinite;
+}
+
+@keyframes blink-cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
 /* === SKILLS === */
 .skills {
-    padding: 90px 60px;
+    padding: 100px 60px;
     border-top: 1px solid #161616;
 }
 
@@ -419,50 +514,65 @@ body.cyber-mode .stat-val {
 }
 
 .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 2px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
 .skill-item {
-    padding: 22px 18px;
-    border: 1px solid #161616;
-    font-size: 0.78rem;
-    color: #555;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    transition: all 0.35s;
-    position: relative;
-    overflow: hidden;
+    padding: 14px 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 100px;
+    font-size: 0.85rem;
+    color: #aaa;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
 }
 
-.skill-item::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #ff5500;
-    transition: width 0.4s ease;
-}
-
-body.cyber-mode .skill-item::after {
-    background: #00ff41;
+.skill-icon {
+    font-size: 1.2rem;
+    color: #ff5500;
+    opacity: 0.7;
+    transition: opacity 0.3s, transform 0.3s;
 }
 
 .skill-item:hover {
-    color: #f0f0f0;
-    border-color: #2a2a2a;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 85, 0, 0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 85, 0, 0.1);
+}
+
+.skill-item:hover .skill-icon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+body.cyber-mode .skill-item {
+    background: #020502;
+    border: 1px solid #003300;
+    border-radius: 4px;
+    color: #4a7a4a;
+    font-family: 'Share Tech Mono', monospace;
+    text-transform: uppercase;
+}
+
+body.cyber-mode .skill-icon {
+    color: #00ff41;
 }
 
 body.cyber-mode .skill-item:hover {
     color: #00ff41;
-    border-color: #003300;
-}
-
-.skill-item:hover::after {
-    width: 100%;
+    background: #050a05;
+    border-color: #00ff41;
+    transform: translateX(6px);
+    box-shadow: -4px 0 0 #00ff41;
 }
 
 /* === PROJECTS === */
@@ -473,6 +583,169 @@ body.cyber-mode .skill-item:hover {
 
 .projects-header {
     margin-bottom: 60px;
+}
+
+/* === TIMELINE PROJECTS === */
+.timeline-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 0;
+}
+
+.timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    background: repeating-linear-gradient(
+        to bottom,
+        #333 0,
+        #333 4px,
+        transparent 4px,
+        transparent 12px
+    );
+    z-index: 1;
+}
+
+.timeline-indicator {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: #ff5500;
+    z-index: 3;
+}
+
+.timeline-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-card-wrapper {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.timeline-card-wrapper.left {
+    justify-content: flex-start;
+}
+
+.timeline-card-wrapper.right {
+    justify-content: flex-end;
+}
+
+.timeline-card {
+    width: 42%;
+    background: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: border-color 0.4s;
+}
+
+.timeline-card:hover {
+    border-color: #ff5500;
+}
+
+.timeline-card-wrapper.left .timeline-card {
+    margin-right: 8%; 
+}
+
+.timeline-card-wrapper.right .timeline-card {
+    margin-left: 8%;
+}
+
+.timeline-connector {
+    position: absolute;
+    top: 120px; 
+    width: 8%; 
+    height: 1px;
+    background: #333;
+}
+
+.timeline-card-wrapper.left .timeline-connector {
+    right: 50%;
+}
+
+.timeline-card-wrapper.right .timeline-connector {
+    left: 50%;
+}
+
+.timeline-card-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: 1px solid #1a1a1a;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.timeline-number {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.timeline-arrow {
+    color: #444;
+    transition: color 0.3s;
+}
+
+.timeline-card:hover .timeline-arrow {
+    color: #ff5500;
+    transform: translate(2px, -2px);
+}
+
+.timeline-canvas-container {
+    width: 100%;
+    height: 260px;
+    background: #111;
+    border-bottom: 1px solid #1a1a1a;
+    overflow: hidden;
+}
+
+.timeline-card-body {
+    padding: 24px;
+}
+
+.timeline-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    color: #f0f0f0;
+    line-height: 1.1;
+    margin-bottom: 12px;
+}
+
+.timeline-desc {
+    color: #777;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.timeline-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.timeline-stack-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: #ff5500;
+    border: 1px solid rgba(255, 85, 0, 0.3);
+    padding: 6px 10px;
+    text-transform: uppercase;
+    background: rgba(255, 85, 0, 0.05);
 }
 
 .projects-grid {
