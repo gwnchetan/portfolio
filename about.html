@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chetan — About</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;800&family=Outfit:wght@800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/sheryjs/dist/Shery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="stylesheet" href="css/about.css?v=1">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav id="main-nav" class="nav-orange">
+        <a href="index.html" class="nav-logo">C/</a>
+        <ul class="nav-right">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><button class="mode-toggle" id="modeToggle">⚡ Cyber Mode</button></li>
+        </ul>
+    </nav>
+
+    <div id="hero" class="editorial-hero">
+        <!-- Corner decorations -->
+        <div class="corner-text bottom-left">
+            <div class="logo-box">C/</div>
+            <div>Full-Stack Developer<br>Based in India</div>
+        </div>
+        <div class="corner-text bottom-right">Available for<br>Freelance & Full-time</div>
+
+        <!-- Typography Back -->
+        <div id="ed-text-back">
+            <h1 class="ed-title ed-red"><span class="ed-inner">FULL STACK</span></h1>
+        </div>
+        
+        <!-- Subject -->
+        <div id="image-block">
+            <svg width="0" height="0" style="position:absolute;">
+                <filter id="sticker-outline" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
+                    <feMorphology in="SourceAlpha" result="expanded" operator="dilate" radius="8" />
+                    <feFlood flood-color="white" />
+                    <feComposite in2="expanded" operator="in" result="outline" />
+                    <feDropShadow dx="15" dy="15" stdDeviation="15" flood-color="black" flood-opacity="0.3" result="shadow" />
+                    <feMerge>
+                        <feMergeNode in="shadow" />
+                        <feMergeNode in="outline" />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+            </svg>
+            <img src="./images/mee.png" alt="Chetan" class="hero-image">
+        </div>
+
+        <!-- Typography Front -->
+        <div id="ed-text-front">
+            <h1 class="ed-title ed-black"><span class="ed-inner">DEVELOPER</span></h1>
+        </div>
+    </div>
+
+    <!-- Storytelling Sections -->
+    <div id="story-container" class="dark-theme story-overlap">
+        <!-- Animated Transition Marquee -->
+        <div class="transition-marquee">
+            <div class="marquee-inner">
+                <span>CREATIVE ENGINEER /// DIGITAL ARCHITECT /// SYSTEM EXPERT /// FULL STACK DEVELOPER /// </span>
+                <span>CREATIVE ENGINEER /// DIGITAL ARCHITECT /// SYSTEM EXPERT /// FULL STACK DEVELOPER /// </span>
+            </div>
+        </div>
+        <section class="story-chapter" id="chapter-1">
+            <div class="bg-object" data-speed="0.5">I</div>
+            <div class="chapter-content reveal-text">
+                <p class="chapter-eyebrow">01 — The Spark</p>
+                <h2 class="chapter-title">HOW IT STARTED</h2>
+                <div class="chapter-text">
+                    <h3>Curiosity as the Catalyst</h3>
+                    <p>It began with a simple curiosity about how the web works. I didn't just want to consume digital
+                        experiences; I wanted to create them. What started as basic HTML layouts quickly turned into a
+                        deep dive into the mechanics of full-stack development.</p>
+                    <p>Every line of code felt like putting together a puzzle where the rules were constantly evolving.
+                        I spent countless nights reverse-engineering websites, trying to understand the invisible
+                        structures that power the modern internet.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-chapter" id="chapter-2">
+            <div class="bg-object right" data-speed="0.3">II</div>
+            <div class="chapter-content reveal-text">
+                <p class="chapter-eyebrow">02 — The Evolution</p>
+                <h2 class="chapter-title">BUILDING SYSTEMS</h2>
+                <div class="chapter-text">
+                    <h3>From Pixels to Architecture</h3>
+                    <p>I realized that true power lies in the backend. I started architecting robust APIs, managing
+                        databases, and orchestrating server-side logic using Node.js, Express, and Python. Every project
+                        was a stepping stone, transforming me from a coder into a system architect.</p>
+                    <p>Building scalable systems taught me the importance of performance, structure, and clean logic. It
+                        wasn't just about making things look good anymore; it was about making them work flawlessly
+                        under pressure.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-chapter" id="chapter-3">
+            <div class="bg-object" data-speed="0.6">III</div>
+            <div class="chapter-content reveal-text">
+                <p class="chapter-eyebrow">03 — The Frontier</p>
+                <h2 class="chapter-title">SECURITY & AI</h2>
+                <div class="chapter-text">
+                    <h3>Defending the Digital Realm</h3>
+                    <p>But building isn't enough. You have to know how to protect what you build—or how to break it. My
+                        journey has now led me into offensive cybersecurity and AI integration.</p>
+                    <p>With projects like N.O.V.A., I am exploring the bleeding edge where development, artificial
+                        intelligence, and security intersect. Understanding vulnerabilities is the ultimate key to
+                        mastering the digital landscape.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-footer reveal-text">
+            <h2 class="footer-cta">LET'S BUILD SOMETHING.</h2>
+            <a href="index.html#contact" class="footer-btn">GET IN TOUCH</a>
+        </section>
+    </div>
+
+    <script src="js/about.js" defer></script>
+</body>
+
+</html>

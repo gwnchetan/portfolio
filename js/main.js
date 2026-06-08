@@ -482,6 +482,38 @@ function scrambleText(element, finalString, duration = 1500) {
 // LOADER ANIMATION
 // ============================================================
 window.addEventListener('load', () => {
+    const navType = performance.getEntriesByType("navigation")[0]?.type;
+    const hasLoaded = sessionStorage.getItem('hasLoaded');
+
+    if (hasLoaded && navType !== 'reload') {
+        // Skip loader overlay completely
+        document.getElementById('loader-overlay').style.display = 'none';
+        
+        // Immediately reveal nav and hero elements
+        gsap.set('nav, .hero-tag, .hero-sub, .hero-scroll, .hero-visual', { opacity: 1, y: 0, x: 0 });
+        gsap.set('.hero-name', { opacity: 1 });
+        
+        Shery.textAnimate(".hero-name", {
+            style: 2,
+            y: 10,
+            delay: 0.1,
+            duration: 1,
+            ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+            multiplier: 0.1,
+        });
+
+        // Start continuous floating animations
+        gsap.to(".hero-tag", { y: -8, rotation: 0.01, force3D: true, duration: 2.5, repeat: -1, yoyo: true, ease: "sine.inOut" });
+        gsap.to(".hero-sub", { y: -8, rotation: 0.01, force3D: true, duration: 2.8, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 0.2 });
+        gsap.to(".hero-scroll", { y: 8, rotation: 0.01, force3D: true, duration: 1.5, repeat: -1, yoyo: true, ease: "sine.inOut" });
+        gsap.to(".hero-visual", { y: -12, rotation: 0.01, force3D: true, duration: 3, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 0.4 });
+
+        ScrollTrigger.refresh();
+        return;
+    }
+
+    sessionStorage.setItem('hasLoaded', 'true');
+
     document.body.style.overflow = 'hidden';
     lenis.stop(); // Pause smooth scrolling during load
 
