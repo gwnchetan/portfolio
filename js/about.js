@@ -47,14 +47,64 @@ document.addEventListener("DOMContentLoaded", () => {
                 duration: 1,
                 ease: "power2.out"
             });
+
+            // Move background circles to create depth parallax
+            gsap.to(".bg-circle.solid", { x: xPos * -0.5, y: yPos * -0.5, duration: 1, ease: "power2.out" });
+            gsap.to(".circle-1", { x: xPos * -1.5, y: yPos * -1.5, duration: 1, ease: "power2.out" });
+            gsap.to(".circle-2", { x: xPos * -2.5, y: yPos * -2.5, duration: 1, ease: "power2.out" });
         });
 
-        // Reset positions on mouse leave
         hero.addEventListener("mouseleave", () => {
             gsap.to([edTextBack, edTextFront, image], {
                 x: 0,
                 y: 0,
                 duration: 1,
+                ease: "power2.out"
+            });
+            gsap.to([".bg-circle.solid", ".circle-1", ".circle-2"], {
+                x: 0,
+                y: 0,
+                duration: 1,
+                ease: "power2.out"
+            });
+        });
+    }
+
+    // ============================================================
+    // BACKGROUND CIRCLES ANIMATION
+    // ============================================================
+    // Center the circles using GSAP to ensure smooth rotation
+    gsap.set(".bg-circle", { xPercent: -50, yPercent: -50 });
+
+    gsap.to(".circle-1", {
+        rotation: 360,
+        duration: 18, // sped up slightly
+        repeat: -1,
+        ease: "none"
+    });
+
+    gsap.to(".circle-2", {
+        rotation: -360,
+        duration: 10, // sped up slightly
+        repeat: -1,
+        ease: "none"
+    });
+
+    // Hover scale effect when mousing near the center
+    const heroSection = document.querySelector('.editorial-hero');
+    if (heroSection) {
+        heroSection.addEventListener('mouseenter', () => {
+            gsap.to([".circle-1", ".circle-2", ".bg-circle.solid"], {
+                scale: 1.05,
+                duration: 0.6,
+                ease: "power2.out"
+            });
+        });
+
+        heroSection.addEventListener('mouseleave', () => {
+            gsap.to([".circle-1", ".circle-2", ".bg-circle.solid"], {
+                scale: 1,
+                duration: 0.6,
                 ease: "power2.out"
             });
         });
