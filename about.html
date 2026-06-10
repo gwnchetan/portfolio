@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chetan — About</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;800&family=Outfit:wght@800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;800&family=Outfit:wght@800&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
@@ -41,19 +43,32 @@
         </div>
         <div class="corner-text bottom-right">Available for<br>Freelance & Full-time</div>
 
+        <!-- Background Circles -->
+        <div class="bg-circles">
+            <div class="bg-circle solid"></div>
+            <div class="bg-circle outline-1"></div>
+            <div class="bg-circle outline-2"></div>
+            <div class="bg-circle outline-3"></div>
+        </div>
+
         <!-- Typography Back -->
         <div id="ed-text-back">
-            <h1 class="ed-title ed-red"><span class="ed-inner">FULL STACK</span></h1>
+            <div class="ed-text-wrapper">
+                <p class="hero-greeting">Hi, I'm <span class="hl-name">CHETAN</span> — I BUILD</p>
+                <h1 class="ed-title ed-red"><span class="ed-inner">FULL STACK</span></h1>
+            </div>
         </div>
-        
+
         <!-- Subject -->
         <div id="image-block">
             <svg width="0" height="0" style="position:absolute;">
-                <filter id="sticker-outline" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
+                <filter id="sticker-outline" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%"
+                    height="200%">
                     <feMorphology in="SourceAlpha" result="expanded" operator="dilate" radius="8" />
                     <feFlood flood-color="white" />
                     <feComposite in2="expanded" operator="in" result="outline" />
-                    <feDropShadow dx="15" dy="15" stdDeviation="15" flood-color="black" flood-opacity="0.3" result="shadow" />
+                    <feDropShadow dx="15" dy="15" stdDeviation="15" flood-color="black" flood-opacity="0.3"
+                        result="shadow" />
                     <feMerge>
                         <feMergeNode in="shadow" />
                         <feMergeNode in="outline" />
@@ -67,6 +82,12 @@
         <!-- Typography Front -->
         <div id="ed-text-front">
             <h1 class="ed-title ed-black"><span class="ed-inner">DEVELOPER</span></h1>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span class="scroll-text">SCROLL</span>
         </div>
     </div>
 

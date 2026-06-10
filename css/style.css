@@ -73,7 +73,7 @@ body.cyber-mode .nav-logo {
 }
 
 .nav-right a.active {
-    color: #ff5500;
+    color: #e55a39;
 }
 
 body.cyber-mode .nav-right a:hover,
@@ -83,8 +83,8 @@ body.cyber-mode .nav-right a.active {
 
 .mode-toggle {
     background: transparent;
-    border: 1px solid #ff5500;
-    color: #ff5500;
+    border: 1px solid #e55a39;
+    color: #e55a39;
     padding: 9px 22px;
     font-family: 'DM Sans', sans-serif;
     font-size: 0.75rem;
@@ -94,7 +94,7 @@ body.cyber-mode .nav-right a.active {
 }
 
 .mode-toggle:hover {
-    background: #ff5500;
+    background: #e55a39;
     color: #0d0d0d;
 }
 
@@ -135,7 +135,7 @@ section {
     font-size: 0.78rem;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: #ff5500;
+    color: #e55a39;
     margin-bottom: 16px;
     transition: color 0.4s;
     will-change: transform;
@@ -152,19 +152,25 @@ body.cyber-mode .hero-tag::after {
 }
 
 .hero-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(90px, 16vw, 240px);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: clamp(60px, 11vw, 180px);
     line-height: 0.88;
     letter-spacing: -3px;
-    color: #f0f0f0;
+    color: #e55a39;
+    text-shadow: 
+        1px 1px 0px #a62429,
+        2px 2px 0px #a62429,
+        3px 3px 0px #a62429,
+        4px 4px 0px #a62429,
+        5px 5px 0px #a62429,
+        6px 6px 0px #a62429,
+        15px 15px 20px rgba(0,0,0,0.4);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .hero-name:hover {
-    color: transparent;
-    -webkit-text-stroke: 2px #ff5500;
-    transform: skewX(-4deg) scale(1.02);
-    text-shadow: 8px 8px 0px rgba(255, 85, 0, 0.15);
+    transform: translateY(-5px) scale(1.02);
 }
 
 body.cyber-mode .hero-name:hover {
@@ -241,7 +247,81 @@ body.cyber-mode .hero-sub {
 }
 
 .kw {
-    color: #ff5500;
+    color: #e55a39;
+}
+
+/* === BRUTALIST CARD === */
+.brutalist-card {
+    background: #1a1a1a;
+    border: 3px solid #e55a39;
+    box-shadow: 12px 12px 0px #e55a39;
+    width: 100%;
+    max-width: 340px;
+    padding: 25px;
+    font-family: 'Share Tech Mono', monospace;
+    color: #f0f0f0;
+    transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+
+.brutalist-card::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: -25px;
+    background: #e55a39;
+    color: #1a1a1a;
+    width: 100px;
+    text-align: center;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 0.7rem;
+    padding: 3px 0;
+    transform: rotate(45deg);
+}
+
+.brutalist-card:hover {
+    transform: perspective(1000px) rotateY(0deg) rotateX(0deg) translate(-5px, -5px);
+    box-shadow: 17px 17px 0px #e55a39;
+}
+
+.b-header {
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 0.8rem;
+    color: #e55a39;
+    letter-spacing: 2px;
+}
+
+.b-body h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.8rem;
+    line-height: 0.9;
+    margin: 0 0 20px 0;
+    color: #f0f0f0;
+    letter-spacing: -1px;
+}
+
+.b-barcode {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 4px;
+    color: #e55a39;
+    opacity: 0.8;
+}
+
+.b-footer {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    border-top: 2px solid #333;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    color: #777;
+}
 }
 
 .str {
@@ -356,7 +436,7 @@ body.cyber-mode .hero-sub {
 .section-eyebrow {
     font-size: 0.72rem;
     letter-spacing: 3px;
-    color: #ff5500;
+    color: #e55a39;
     text-transform: uppercase;
     margin-bottom: 20px;
     transition: color 0.4s;
@@ -414,7 +494,7 @@ body.cyber-mode .about-text {
 
 .stat-icon {
     font-size: 2rem;
-    color: #ff5500;
+    color: #e55a39;
     margin-bottom: 16px;
     opacity: 0.8;
 }
@@ -423,7 +503,7 @@ body.cyber-mode .about-text {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 3.2rem;
     color: transparent;
-    background: linear-gradient(135deg, #f0f0f0, #ff5500);
+    background: linear-gradient(135deg, #f0f0f0, #e55a39);
     -webkit-background-clip: text;
     background-clip: text;
     line-height: 1;
@@ -559,7 +639,7 @@ body.cyber-mode .stat-label {
 
 .skill-icon {
     font-size: 1.2rem;
-    color: #ff5500;
+    color: #e55a39;
     opacity: 0.7;
     transition: opacity 0.3s, transform 0.3s;
 }
@@ -638,7 +718,7 @@ body.cyber-mode .skill-item:hover {
     transform: translate(-50%, -50%);
     width: 12px;
     height: 12px;
-    background: #ff5500;
+    background: #e55a39;
     z-index: 3;
 }
 
@@ -676,7 +756,7 @@ body.cyber-mode .skill-item:hover {
 }
 
 .timeline-card:hover {
-    border-color: #ff5500;
+    border-color: #e55a39;
 }
 
 .timeline-card-wrapper.left .timeline-card {
@@ -722,7 +802,7 @@ body.cyber-mode .skill-item:hover {
 }
 
 .timeline-card:hover .timeline-arrow {
-    color: #ff5500;
+    color: #e55a39;
     transform: translate(2px, -2px);
 }
 
@@ -762,7 +842,7 @@ body.cyber-mode .skill-item:hover {
 .timeline-stack-tag {
     font-family: 'Share Tech Mono', monospace;
     font-size: 0.7rem;
-    color: #ff5500;
+    color: #e55a39;
     border: 1px solid rgba(255, 85, 0, 0.3);
     padding: 6px 10px;
     text-transform: uppercase;
@@ -925,7 +1005,7 @@ body.cyber-mode .media-placeholder {
 }
 
 .project-card:hover .card-arrow {
-    color: #ff5500;
+    color: #e55a39;
     transform: translate(6px, -6px);
 }
 
@@ -936,7 +1016,7 @@ body.cyber-mode .project-card:hover .card-arrow {
 .project-tag {
     font-size: 0.75rem;
     letter-spacing: 3px;
-    color: #ff5500;
+    color: #e55a39;
     text-transform: uppercase;
     margin-bottom: 16px;
 }
@@ -1068,8 +1148,8 @@ body.cyber-mode .contact-big {
 }
 
 .contact-link:hover {
-    color: #ff5500;
-    border-color: #ff5500;
+    color: #e55a39;
+    border-color: #e55a39;
 }
 
 body.cyber-mode .contact-link:hover {
@@ -1200,7 +1280,7 @@ body.cyber-mode .contact {
     left: 0;
     bottom: 0;
     width: 0%;
-    background: #ff5500;
+    background: #e55a39;
 }
 
 .loader-info {
@@ -1217,7 +1297,7 @@ body.cyber-mode .contact {
 }
 
 .loader-status {
-    color: #ff5500;
+    color: #e55a39;
 }
 
 .loader-text {
@@ -1444,7 +1524,7 @@ body.cyber-mode .marquee-item-inner i {
 }
 
 .marquee-item:hover .marquee-item-inner i {
-    color: #ff5500;
+    color: #e55a39;
     transform: scale(1.1);
     filter: drop-shadow(0 0 8px rgba(255, 85, 0, 0.5));
 }

@@ -25,6 +25,58 @@ body {
     overflow: hidden;
 }
 
+/* Background Circles */
+.bg-circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    top: 45%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+}
+
+.bg-circle.solid {
+    background: rgba(0, 0, 0, 0.06);
+    width: 45vw;
+    height: 45vw;
+    min-width: 400px;
+    min-height: 400px;
+}
+
+.bg-circle.outline-1 {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    width: 70vw;
+    height: 70vw;
+    min-width: 600px;
+    min-height: 600px;
+}
+
+.bg-circle.outline-2 {
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    width: 110vw;
+    height: 110vw;
+    min-width: 900px;
+    min-height: 900px;
+}
+
+.bg-circle.outline-3 {
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    width: 150vw;
+    height: 150vw;
+    min-width: 1200px;
+    min-height: 1200px;
+}
+
 /* Navbar Contrast Fix for Orange Background */
 nav.nav-orange .nav-logo, 
 nav.nav-orange .nav-right a {
@@ -83,6 +135,33 @@ nav.nav-orange .mode-toggle:hover {
 }
 
 /* Big Typography */
+.ed-text-wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero-greeting {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(24px, 3vw, 40px);
+    color: #1a1a1a;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 12px;
+    line-height: 1;
+}
+
+.hl-name {
+    color: #f0f0f0;
+    background: #1a1a1a;
+    padding: 4px 15px;
+    border-radius: 4px;
+    display: inline-block;
+    transform: rotate(-2deg);
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+}
+
 #ed-text-back, #ed-text-front {
     position: absolute;
     left: 0;
@@ -92,12 +171,12 @@ nav.nav-orange .mode-toggle:hover {
 }
 
 #ed-text-back {
-    top: 25%; /* Adjust vertical position */
+    top: 22%; /* Moved up slightly to prevent overlap */
     z-index: 1;
 }
 
 #ed-text-front {
-    top: 50%; /* Push down below the back text */
+    top: 52%; /* Moved down slightly to prevent overlap */
     z-index: 1; /* Behind the image */
 }
 
@@ -428,4 +507,60 @@ user-select: none;
 .footer-btn:hover {
     background: #e04a00;
     transform: translateY(-5px);
+}
+
+/* ========================================= */
+/* SCROLL INDICATOR                          */
+/* ========================================= */
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 120px;
+    right: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 20;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.scroll-indicator:hover {
+    opacity: 1;
+}
+
+.scroll-line {
+    width: 2px;
+    height: 50px;
+    background: rgba(26, 26, 26, 0.2);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 8px;
+    border-radius: 2px;
+}
+
+.scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #1a1a1a;
+    animation: scrollAnim 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+
+.scroll-text {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+@keyframes scrollAnim {
+    0% { top: -100%; }
+    50% { top: 0%; }
+    100% { top: 100%; }
 }
