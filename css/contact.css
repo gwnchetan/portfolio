@@ -1,0 +1,208 @@
+/* ==========================================================================
+   Contact Page Styles
+   ========================================================================== */
+
+.contact-page {
+    padding-top: 150px;
+    padding-bottom: 100px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 5%;
+}
+
+.contact-massive-heading {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(80px, 12vw, 180px);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -3px;
+    color: #f0f0f0;
+    margin-bottom: 80px;
+    transition: color 0.3s ease;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 80px;
+}
+
+/* Left Column - Details */
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.contact-info-block h4 {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contact-info-block p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ccc;
+    margin: 0;
+}
+
+/* Right Column - Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.form-group label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    color: #f0f0f0;
+    outline: none;
+    transition: border-color 0.3s ease;
+    border-radius: 0;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 40px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-bottom-color: #ff5500;
+}
+
+.form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.form-group select option {
+    background-color: #111;
+    color: #f0f0f0;
+}
+
+.form-group .select-arrow {
+    position: absolute;
+    right: 0;
+    bottom: 15px;
+    pointer-events: none;
+    color: #888;
+}
+
+
+.submit-btn {
+    align-self: flex-start;
+    background: #f0f0f0;
+    color: #0d0d0d;
+    border: none;
+    border-radius: 30px;
+    padding: 15px 40px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background: #ff5500;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   Cyber Mode Overrides
+   ========================================================================== */
+
+body.cyber-mode .form-group input:focus,
+body.cyber-mode .form-group select:focus,
+body.cyber-mode .form-group textarea:focus {
+    border-bottom-color: #00ff41;
+}
+
+
+body.cyber-mode .submit-btn:hover {
+    background: #00ff41;
+    color: #000;
+}
+
+body.cyber-mode .form-group input,
+body.cyber-mode .form-group select,
+body.cyber-mode .form-group textarea {
+    color: #e0ffe0;
+}
+
+body.cyber-mode .form-group select option {
+    background-color: #050a05;
+    color: #e0ffe0;
+}
+
+body.cyber-mode .contact-massive-heading {
+    color: #e0ffe0;
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 900px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    
+    .contact-massive-heading {
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}

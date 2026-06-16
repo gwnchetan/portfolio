@@ -22,15 +22,16 @@
 </head>
 
 <body>
+    <div id="bg-three" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></div>
     <!-- Navbar -->
-    <nav id="main-nav" class="nav-orange">
+    <nav id="main-nav">
         <a href="index.html" class="nav-logo">C/</a>
         <ul class="nav-right">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html" class="active">About</a></li>
-            <li><a href="index.html#skills">Skills</a></li>
+
             <li><a href="index.html#projects">Projects</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="contact.html">Contact</a></li>
             <li><button class="mode-toggle" id="modeToggle">⚡ Cyber Mode</button></li>
         </ul>
     </nav>
@@ -45,7 +46,6 @@
 
         <!-- Background Circles -->
         <div class="bg-circles" id="bg-circles-container">
-            <div class="bg-circle solid"></div>
             <div class="bg-circle circle-1"></div>
             <div class="bg-circle circle-2"></div>
         </div>
@@ -99,63 +99,132 @@
                 <span>CREATIVE ENGINEER /// DIGITAL ARCHITECT /// SYSTEM EXPERT /// FULL STACK DEVELOPER /// </span>
             </div>
         </div>
-        <section class="story-chapter" id="chapter-1">
-            <div class="bg-object" data-speed="0.5">I</div>
-            <div class="chapter-content reveal-text">
-                <p class="chapter-eyebrow">01 — The Spark</p>
-                <h2 class="chapter-title">HOW IT STARTED</h2>
-                <div class="chapter-text">
-                    <h3>Curiosity as the Catalyst</h3>
-                    <p>It began with a simple curiosity about how the web works. I didn't just want to consume digital
-                        experiences; I wanted to create them. What started as basic HTML layouts quickly turned into a
-                        deep dive into the mechanics of full-stack development.</p>
-                    <p>Every line of code felt like putting together a puzzle where the rules were constantly evolving.
-                        I spent countless nights reverse-engineering websites, trying to understand the invisible
-                        structures that power the modern internet.</p>
+        <section class="gsap-story-section" id="my-story">
+            <div class="gsap-story-container">
+                <div class="story-heading-wrapper reveal-text">
+                    <p class="section-eyebrow">01 — Background</p>
+                    <h2 class="section-title">MY STORY</h2>
+                </div>
+                <p class="gsap-hero-text">
+                    My name is Chandrbhan Sakre — most people call me <span class="gsap-hl hl-cyan">Chetan</span>. I'm a <span class="gsap-hl hl-orange">Full Stack Developer</span> from Rajkot, Gujarat, freshly graduated with a BCA from RK University (2023–26).
+                </p>
+                <p class="gsap-hero-text">
+                    My obsession with computers started at 15 and never stopped. Through college I went deep — web development, Android apps, cloud platforms, and <span class="gsap-hl hl-green">cybersecurity</span>. Security especially pulled me in. Understanding how attacks work, how systems defend themselves, how protocols like HTTP, HTTPS, DNS, and WebSockets actually talk to each other — that's the kind of depth I'm drawn to.
+                </p>
+                <p class="gsap-hero-text">
+                    I'm someone who gets <span class="gsap-hl hl-blue">curious</span>, goes <span class="gsap-hl hl-purple">deep</span>, and keeps <span class="gsap-hl hl-orange">building</span>.
+                </p>
+            </div>
+        </section>
+        <!-- Services Section Placeholder -->
+        <section class="about-section bg-darker" id="services">
+            <div class="section-container">
+                <div class="reveal-text">
+                    <p class="section-eyebrow">02 — Services</p>
+                    <h2 class="section-title">WHAT I OFFER</h2>
+                </div>
+                
+                <div class="services-grid">
+                    <!-- Service 1 -->
+                    <div class="service-card gs-reveal">
+                        <div class="svc-number">01</div>
+                        <h3 class="service-title">Creative Frontend</h3>
+                        <p class="service-desc">Visually ambitious websites with animations, scroll effects, and interactive 3D elements using Three.js and GSAP.</p>
+                        <div class="service-tags">
+                            <span class="svc-tag">Three.js</span>
+                            <span class="svc-tag">GSAP</span>
+                            <span class="svc-tag">ScrollTrigger</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 2 -->
+                    <div class="service-card gs-reveal">
+                        <div class="svc-number">02</div>
+                        <h3 class="service-title">Portfolio Sites</h3>
+                        <p class="service-desc">High-end portfolio sites for designers, developers, photographers, agencies. The kind that wins Awwwards.</p>
+                        <div class="service-tags">
+                            <span class="svc-tag">Custom design</span>
+                            <span class="svc-tag">Animations</span>
+                            <span class="svc-tag">Responsive</span>
+                        </div>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="service-card gs-reveal">
+                        <div class="svc-number">03</div>
+                        <h3 class="service-title">Landing Pages</h3>
+                        <p class="service-desc">Fast, conversion-focused single pages for products, startups, or events with smooth interactions.</p>
+                        <div class="service-tags">
+                            <span class="svc-tag">React</span>
+                            <span class="svc-tag">Lenis</span>
+                            <span class="svc-tag">Performance</span>
+                        </div>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="service-card gs-reveal">
+                        <div class="svc-number">04</div>
+                        <h3 class="service-title">Full Stack Web</h3>
+                        <p class="service-desc">End-to-end web development with robust backends and optimized SEO for maximum visibility.</p>
+                        <div class="service-tags">
+                            <span class="svc-tag">Node.js</span>
+                            <span class="svc-tag">Express</span>
+                            <span class="svc-tag">MongoDB</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="story-chapter" id="chapter-2">
-            <div class="bg-object right" data-speed="0.3">II</div>
-            <div class="chapter-content reveal-text">
-                <p class="chapter-eyebrow">02 — The Evolution</p>
-                <h2 class="chapter-title">BUILDING SYSTEMS</h2>
-                <div class="chapter-text">
-                    <h3>From Pixels to Architecture</h3>
-                    <p>I realized that true power lies in the backend. I started architecting robust APIs, managing
-                        databases, and orchestrating server-side logic using Node.js, Express, and Python. Every project
-                        was a stepping stone, transforming me from a coder into a system architect.</p>
-                    <p>Building scalable systems taught me the importance of performance, structure, and clean logic. It
-                        wasn't just about making things look good anymore; it was about making them work flawlessly
-                        under pressure.</p>
+        <!-- The Stack Section -->
+        <section class="about-section bg-darker" id="stack-table" style="padding-top: 0;">
+            <div class="section-container">
+                <div class="reveal-text" style="margin-bottom: 20px;">
+                    <p class="section-eyebrow">03 — The Stack</p>
+                    <h2 class="section-title">TOOLS & TECH</h2>
+                </div>
+                
+                <div class="stack-grid gs-reveal">
+                    <div class="stack-col">
+                        <div class="stack-col-header">CREATIVE & ANIMATION</div>
+                        <ul class="stack-list">
+                            <li>Three.js</li>
+                            <li>GSAP</li>
+                            <li>ScrollTrigger</li>
+                            <li>Lenis</li>
+                            <li>Shery.js</li>
+                            <li>WebGL</li>
+                        </ul>
+                    </div>
+                    <div class="stack-col">
+                        <div class="stack-col-header">FRONTEND CORE</div>
+                        <ul class="stack-list">
+                            <li>React</li>
+                            <li>JavaScript</li>
+                            <li>HTML / CSS</li>
+                            <li>Tailwind CSS</li>
+                        </ul>
+                    </div>
+                    <div class="stack-col">
+                        <div class="stack-col-header">TOOLS</div>
+                        <ul class="stack-list">
+                            <li>Git</li>
+                            <li>GitHub</li>
+                            <li>Vite</li>
+                            <li>VS Code</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="story-chapter" id="chapter-3">
-            <div class="bg-object" data-speed="0.6">III</div>
-            <div class="chapter-content reveal-text">
-                <p class="chapter-eyebrow">03 — The Frontier</p>
-                <h2 class="chapter-title">SECURITY & AI</h2>
-                <div class="chapter-text">
-                    <h3>Defending the Digital Realm</h3>
-                    <p>But building isn't enough. You have to know how to protect what you build—or how to break it. My
-                        journey has now led me into offensive cybersecurity and AI integration.</p>
-                    <p>With projects like N.O.V.A., I am exploring the bleeding edge where development, artificial
-                        intelligence, and security intersect. Understanding vulnerabilities is the ultimate key to
-                        mastering the digital landscape.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="story-footer reveal-text">
-            <h2 class="footer-cta">LET'S BUILD SOMETHING.</h2>
-            <a href="index.html#contact" class="footer-btn">GET IN TOUCH</a>
-        </section>
     </div>
 
+    <!-- Global Premium Footer is injected via js/footer.js -->
+    
+    <script src="js/footer.js" defer></script>
     <script src="js/about.js" defer></script>
+    <script src="js/particles.js" defer></script>
 </body>
 
 </html>

@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chetan — Dev & Security</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;800&family=Outfit:wght@800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;800&family=Outfit:wght@800&family=Share+Tech+Mono&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
@@ -52,9 +54,9 @@
         <a href="#" class="nav-logo">C/</a>
         <ul class="nav-right">
             <li><a href="about.html">About</a></li>
-            <li><a href="#skills">Skills</a></li>
+
             <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="contact.html">Contact</a></li>
             <li><button class="mode-toggle" id="modeToggle">⚡ Cyber Mode</button></li>
         </ul>
     </nav>
@@ -64,30 +66,61 @@
     <!-- ===== WEB DEV MODE ===== -->
     <div id="webdev-content">
 
-        <section class="hero">
-            <div class="hero-content">
-                <p class="hero-tag">Full Stack Developer</p>
-                <h1 class="hero-name">CHETAN</h1>
-                <p class="hero-sub">Building backends, breaking security — BCA student turning real ideas into real
-                    systems.</p>
-            </div>
-            <div class="hero-visual">
-                <div class="brutalist-card">
-                    <div class="b-header">ACCESS LEVEL: ROOT</div>
-                    <div class="b-body">
-                        <h2>SYSTEM<br>ONLINE</h2>
-                        <div class="b-barcode">||| | || ||| | || |</div>
+        <section class="hero agency-hero" id="home">
+            <div class="agency-hero-bg"></div>
+
+            <div class="agency-hero-container">
+                <p class="agency-eyebrow">/full stack developer</p>
+                <h1 class="agency-massive-text">
+                    <div class="agency-line">I build digital</div>
+                    <div class="agency-line">experiences that &mdash;</div>
+                    <div class="agency-pill-wrapper">
+                        <!-- Decorative lightning -->
+                        <svg class="deco-bolt deco-1 float-slow" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#ff5500" />
+                        </svg>
+                        <svg class="deco-bolt deco-2 float-fast" width="30" height="30" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#ffffff" />
+                        </svg>
+
+                        <div class="agency-pill pill-primary float-1">
+                            <span class="fold-corner"></span>
+                            breathe.
+                        </div>
+                        <div class="agency-pill pill-secondary float-2">
+                            react.
+                            <!-- Paperclip SVG -->
+                            <svg class="deco-clip" width="30" height="30" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12.5 19C10.567 19 9 17.433 9 15.5V6.5C9 5.11929 10.1193 4 11.5 4C12.8807 4 14 5.11929 14 6.5V14.5C14 15.3284 13.3284 16 12.5 16C11.6716 16 11 15.3284 11 14.5V7H12.5V14.5C12.5 14.5 12.5 14.5 12.5 14.5V6.5C12.5 5.94772 12.0523 5.5 11.5 5.5C10.9477 5.5 10.5 5.94772 10.5 6.5V15.5C10.5 16.6046 11.3954 17.5 12.5 17.5C13.6046 17.5 14.5 16.6046 14.5 15.5V6H16V15.5C16 17.433 14.433 19 12.5 19Z"
+                                    fill="#111" stroke="#111" stroke-width="0.5" />
+                            </svg>
+                        </div>
                     </div>
-                    <div class="b-footer">
-                        <span>2026 // INDIA</span>
-                        <span>V. 2.0</span>
+                </h1>
+
+                <div class="agency-bottom">
+                    <div class="agency-scribble">
+                        <svg width="60" height="20" viewBox="0 0 100 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 10C15 2 25 18 35 10C45 2 55 18 65 10C75 2 85 18 98 10" stroke="#fff"
+                                stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <div class="agency-cta-group">
+                        <p>Let's start discussing<br>your project.</p>
+                        <a href="contact.html" class="btn-agency-cta">
+                            Start a Project
+                            <span class="red-pin"></span>
+                        </a>
                     </div>
                 </div>
             </div>
-            <span class="hero-scroll">Scroll Down</span>
         </section>
 
-                <!-- Content below hero wrapped for rounded corners -->
+        <!-- Content below hero wrapped for rounded corners -->
         <div class="story-overlap">
             <!-- Editorial Marquee -->
             <div class="transition-marquee">
@@ -97,72 +130,145 @@
                 </div>
             </div>
 
-        <section class="tech-marquee-section">
-            <div class="marquee-container">
-                <div class="marquee-track tech-marquee-track"></div>
-            </div>
-        </section>
-
-        <section class="about" id="about">
-            <div class="reveal">
-                <p class="section-eyebrow">01 — About</p>
-                <h2 class="section-title">WHO I AM</h2>
-                <p class="about-text">
-                    BCA student with a serious bias for building things. My stack lives in the backend — Node.js,
-                    Express, MongoDB, Flask — but I know my way around a React frontend too.<br><br>
-                    Parallel to web dev, I'm actively moving into cybersecurity. Not a casual interest. I'm building
-                    N.O.V.A., a privacy-first local AI agent on Kali Linux, and grinding TryHackMe and HackTheBox
-                    hands-on.
-                </p>
-            </div>
-            <div class="stats-grid reveal">
-                <div class="stat-card">
-                    <i class="ph ph-folder-open stat-icon"></i>
-                    <div class="stat-val">4+</div>
-                    <div class="stat-label">Projects Built</div>
+            <section class="tech-marquee-section">
+                <div class="marquee-container">
+                    <div class="marquee-track tech-marquee-track"></div>
                 </div>
-                <div class="stat-card">
-                    <i class="ph ph-stack stat-icon"></i>
-                    <div class="stat-val">8+</div>
-                    <div class="stat-label">Technologies</div>
-                </div>
-                <div class="stat-card">
-                    <i class="ph ph-globe stat-icon"></i>
-                    <div class="stat-val">2</div>
-                    <div class="stat-label">Domains</div>
-                </div>
-                <div class="stat-card">
-                    <i class="ph ph-infinity stat-icon"></i>
-                    <div class="stat-val">∞</div>
-                    <div class="stat-label">Things to Learn</div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="skills" id="skills">
-            <div class="skills-header reveal">
-                <p class="section-eyebrow">02 — Skills</p>
-                <h2 class="section-title">WHAT I USE</h2>
-            </div>
-            <div class="skills-grid" id="wd-skills"></div>
-        </section>
+            <section class="about" id="about">
+                <div class="reveal">
+                    <p class="section-eyebrow">01 — About</p>
+                    <h2 class="section-title">WHO I AM</h2>
+                    <p class="about-text">
+                        BCA student with a serious bias for building things. My stack lives in the backend — Node.js,
+                        Express, MongoDB, Flask — but I know my way around a React frontend too.<br><br>
+                        Parallel to web dev, I go deep on creative frontend — building visually ambitious experiences
+                        with Three.js, GSAP, and WebGL. Not just pretty animations. I care about performance, feel, and
+                        the details most developers skip.
+                    </p>
+                    <a href="about.html" class="about-btn">
+                        <i class="ph ph-arrow-right btn-arrow-left"></i>
+                        <span class="btn-text">Read More</span>
+                        <i class="ph ph-arrow-right btn-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="stats-grid reveal">
+                    <div class="stat-card">
+                        <i class="ph ph-folder-open stat-icon"></i>
+                        <div class="stat-val">4+</div>
+                        <div class="stat-label">Projects Built</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="ph ph-stack stat-icon"></i>
+                        <div class="stat-val">8+</div>
+                        <div class="stat-label">Technologies</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="ph ph-globe stat-icon"></i>
+                        <div class="stat-val">2</div>
+                        <div class="stat-label">Domains</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="ph ph-infinity stat-icon"></i>
+                        <div class="stat-val">∞</div>
+                        <div class="stat-label">Things to Learn</div>
+                    </div>
+                </div>
+            </section>
 
-        <section class="projects" id="projects">
-            <div class="projects-header reveal">
-                <p class="section-eyebrow">03 — Projects</p>
-                <h2 class="section-title">WHAT I BUILT</h2>
-            </div>
-            <div class="projects-grid" id="wd-projects-grid"></div>
-        </section>
+            <section class="skills stack-section" id="skills">
+                <div class="skills-header reveal">
+                    <p class="section-eyebrow"
+                        style="color: #ea580c; font-weight: bold; font-family: 'Share Tech Mono', monospace; text-transform: uppercase; letter-spacing: 2px;">
+                        SKILLS</p>
+                    <h2 class="stack-title">
+                        <span class="stack-bold">The Stack</span>
+                        <span class="stack-italic">I live in.</span>
+                    </h2>
+                </div>
 
-        <section class="contact" id="contact">
-            <h2 class="contact-big reveal">LET'S<br>TALK</h2>
-            <div class="contact-links reveal">
-                <a href="mailto:your@email.com" class="contact-link">Email</a>
-                <a href="https://github.com/yourgithub" target="_blank" class="contact-link">GitHub</a>
-                <a href="https://linkedin.com/in/yourlinkedin" target="_blank" class="contact-link">LinkedIn</a>
-            </div>
-        </section>
+                <div class="stack-marquees reveal">
+                    <!-- Filled Text Marquee (Left) -->
+                    <div class="stack-marquee-container">
+                        <div class="stack-marquee-track track-left">
+                            <div class="stack-marquee-content">
+                                <span>React <span class="dot">&#9632;</span> HTML <span class="dot">&#9632;</span> CSS
+                                    <span class="dot">&#9632;</span> JavaScript <span class="dot">&#9632;</span>
+                                    Three.js <span class="dot">&#9632;</span> GSAP <span class="dot">&#9632;</span>
+                                    Tailwind CSS <span class="dot">&#9632;</span> Lenis <span class="dot">&#9632;</span>
+                                    WebGL <span class="dot">&#9632;</span></span>
+                                <span>React <span class="dot">&#9632;</span> HTML <span class="dot">&#9632;</span> CSS
+                                    <span class="dot">&#9632;</span> JavaScript <span class="dot">&#9632;</span>
+                                    Three.js <span class="dot">&#9632;</span> GSAP <span class="dot">&#9632;</span>
+                                    Tailwind CSS <span class="dot">&#9632;</span> Lenis <span class="dot">&#9632;</span>
+                                    WebGL <span class="dot">&#9632;</span></span>
+                                <span>React <span class="dot">&#9632;</span> HTML <span class="dot">&#9632;</span> CSS
+                                    <span class="dot">&#9632;</span> JavaScript <span class="dot">&#9632;</span>
+                                    Three.js <span class="dot">&#9632;</span> GSAP <span class="dot">&#9632;</span>
+                                    Tailwind CSS <span class="dot">&#9632;</span> Lenis <span class="dot">&#9632;</span>
+                                    WebGL <span class="dot">&#9632;</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stroke Text Marquee (Right) -->
+                    <div class="stack-marquee-container">
+                        <div class="stack-marquee-track track-right">
+                            <div class="stack-marquee-content stroke-text">
+                                <span>Node.js <span class="dot">&#9632;</span> Express.js <span
+                                        class="dot">&#9632;</span> AWS <span class="dot">&#9632;</span> Vite <span
+                                        class="dot">&#9632;</span> Git <span class="dot">&#9632;</span> GitHub <span
+                                        class="dot">&#9632;</span> VS Code <span class="dot">&#9632;</span>
+                                    ScrollTrigger <span class="dot">&#9632;</span> Shery.js <span
+                                        class="dot">&#9632;</span></span>
+                                <span>Node.js <span class="dot">&#9632;</span> Express.js <span
+                                        class="dot">&#9632;</span> AWS <span class="dot">&#9632;</span> Vite <span
+                                        class="dot">&#9632;</span> Git <span class="dot">&#9632;</span> GitHub <span
+                                        class="dot">&#9632;</span> VS Code <span class="dot">&#9632;</span>
+                                    ScrollTrigger <span class="dot">&#9632;</span> Shery.js <span
+                                        class="dot">&#9632;</span></span>
+                                <span>Node.js <span class="dot">&#9632;</span> Express.js <span
+                                        class="dot">&#9632;</span> AWS <span class="dot">&#9632;</span> Vite <span
+                                        class="dot">&#9632;</span> Git <span class="dot">&#9632;</span> GitHub <span
+                                        class="dot">&#9632;</span> VS Code <span class="dot">&#9632;</span>
+                                    ScrollTrigger <span class="dot">&#9632;</span> Shery.js <span
+                                        class="dot">&#9632;</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-tags reveal">
+                    <span class="stack-tag active">React</span>
+                    <span class="stack-tag">HTML</span>
+                    <span class="stack-tag">CSS</span>
+                    <span class="stack-tag">JavaScript</span>
+                    <span class="stack-tag active">GSAP</span>
+                    <span class="stack-tag">Tailwind CSS</span>
+                    <span class="stack-tag">Three.js</span>
+                    <span class="stack-tag">Node.js</span>
+                    <span class="stack-tag">Express.js</span>
+                    <span class="stack-tag active">AWS</span>
+                    <span class="stack-tag">Lenis</span>
+                    <span class="stack-tag">WebGL</span>
+                    <span class="stack-tag">ScrollTrigger</span>
+                    <span class="stack-tag">Shery.js</span>
+                    <span class="stack-tag">Vite</span>
+                    <span class="stack-tag">Git</span>
+                    <span class="stack-tag">GitHub</span>
+                    <span class="stack-tag">VS Code</span>
+                </div>
+            </section>
+
+            <section class="projects" id="projects">
+                <div class="projects-header reveal">
+                    <p class="section-eyebrow">03 — Projects</p>
+                    <h2 class="section-title">WHAT I BUILT</h2>
+                </div>
+                <div class="projects-grid" id="wd-projects-grid"></div>
+            </section>
+
         </div> <!-- End story-overlap -->
 
     </div>
@@ -215,6 +321,7 @@
                     > Focus: Offensive security + defensive thinking<br>
                     > Building: N.O.V.A. — local AI agent for Kali<span class="blinking-cursor">█</span>
                 </p>
+                <a href="about.html" class="about-btn">> Access Complete Profile</a>
             </div>
             <div class="stats-grid reveal">
                 <div class="stat-card">
@@ -256,24 +363,11 @@
             <div class="projects-grid" id="cy-projects-grid"></div>
         </section>
 
-        <section class="contact" id="cyber-contact">
-            <h2 class="contact-big reveal">MAKE<br>CONTACT</h2>
-            <div class="contact-links reveal">
-                <a href="mailto:your@email.com" class="contact-link">Email</a>
-                <a href="https://github.com/yourgithub" target="_blank" class="contact-link">GitHub</a>
-                <a href="https://linkedin.com/in/yourlinkedin" target="_blank" class="contact-link">LinkedIn</a>
-            </div>
-        </section>
-
     </div>
 
-    <footer>
-        <span>© 2025 Chetan</span>
-        <span id="footer-mode">Web Dev Mode</span>
-    </footer>
+    <!-- Global Premium Footer is injected via js/footer.js -->
 
-
-
+    <script src="js/footer.js" defer></script>
     <script src="js/main.js?v=2" defer></script>
     <script src="js/particles.js" defer></script>
 </body>

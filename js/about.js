@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Basic GSAP timeline for entry animations
-    const tl = gsap.timeline();
+    // Added a slight delay so the browser can finish painting and loading fonts/particles
+    const tl = gsap.timeline({ delay: 0.4 });
 
     // 1. Image fade and slide up
     tl.fromTo(".hero-image",
@@ -49,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             // Move background circles to create depth parallax
-            gsap.to(".bg-circle.solid", { x: xPos * -0.5, y: yPos * -0.5, duration: 1, ease: "power2.out" });
             gsap.to(".circle-1", { x: xPos * -1.5, y: yPos * -1.5, duration: 1, ease: "power2.out" });
             gsap.to(".circle-2", { x: xPos * -2.5, y: yPos * -2.5, duration: 1, ease: "power2.out" });
         });
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 duration: 1,
                 ease: "power2.out"
             });
-            gsap.to([".bg-circle.solid", ".circle-1", ".circle-2"], {
+            gsap.to([".circle-1", ".circle-2"], {
                 x: 0,
                 y: 0,
                 duration: 1,
@@ -76,25 +76,29 @@ document.addEventListener("DOMContentLoaded", () => {
     // Center the circles using GSAP to ensure smooth rotation
     gsap.set(".bg-circle", { xPercent: -50, yPercent: -50 });
 
-    gsap.to(".circle-1", {
-        rotation: 360,
-        duration: 18, // sped up slightly
-        repeat: -1,
-        ease: "none"
-    });
+    // Defer the infinite rotation until the main hero timeline is almost done
+    // This prevents lag during the initial load
+    tl.add(() => {
+        gsap.to(".circle-1", {
+            rotation: 360,
+            duration: 18, 
+            repeat: -1,
+            ease: "none"
+        });
 
-    gsap.to(".circle-2", {
-        rotation: -360,
-        duration: 10, // sped up slightly
-        repeat: -1,
-        ease: "none"
-    });
+        gsap.to(".circle-2", {
+            rotation: -360,
+            duration: 10, 
+            repeat: -1,
+            ease: "none"
+        });
+    }, "-=0.5");
 
     // Hover scale effect when mousing near the center
     const heroSection = document.querySelector('.editorial-hero');
     if (heroSection) {
         heroSection.addEventListener('mouseenter', () => {
-            gsap.to([".circle-1", ".circle-2", ".bg-circle.solid"], {
+            gsap.to([".circle-1", ".circle-2"], {
                 scale: 1.05,
                 duration: 0.6,
                 ease: "power2.out"
@@ -102,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         heroSection.addEventListener('mouseleave', () => {
-            gsap.to([".circle-1", ".circle-2", ".bg-circle.solid"], {
+            gsap.to([".circle-1", ".circle-2"], {
                 scale: 1,
                 duration: 0.6,
                 ease: "power2.out"
@@ -161,20 +165,190 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ============================================================
-    // PARALLAX BACKGROUND OBJECTS
+    // NEW ABOUT SECTIONS ANIMATIONS
     // ============================================================
-    const bgObjects = document.querySelectorAll('.bg-object');
-    bgObjects.forEach(obj => {
-        const speed = parseFloat(obj.getAttribute('data-speed')) || 0.5;
-        gsap.to(obj, {
-            y: () => (window.innerHeight * speed),
+
+    // 0. GSAP Hero Text Reveal (Word by Word 3D Reveal)
+    const gsapHeroTexts = document.querySelectorAll('.gsap-hero-text');
+    
+    gsapHeroTexts.forEach(text => {
+        // Safe word splitter that preserves HTML tags like highlights
+        const walkDOM = (node) => {
+            if (node.nodeType === 3) { // Text node
+                const words = node.nodeValue.split(/(\s+)/);
+                const fragment = document.createDocumentFragment();
+                let hasWords = false;
+                
+                words.forEach(word => {
+                    if (word.trim().length > 0) {
+                        const span = document.createElement('span');
+                        span.className = 'gsap-word';
+                        span.style.display = 'inline-block';
+                        span.textContent = word;
+                        fragment.appendChild(span);
+                        hasWords = true;
+                    } else {
+                        fragment.appendChild(document.createTextNode(word));
+                    }
+                });
+                
+                if (hasWords) {
+                    node.parentNode.replaceChild(fragment, node);
+                }
+            } else if (node.nodeType === 1) { // Element node
+                if (!node.classList.contains('gsap-word')) {
+                    Array.from(node.childNodes).forEach(walkDOM);
+                }
+            }
+        };
+        
+        // Clone the text content, split it, and replace
+        Array.from(text.childNodes).forEach(walkDOM);
+    });
+
+    // Animate all words sequentially across all paragraphs with a performant y-axis and opacity fade
+    const allStoryWords = document.querySelectorAll('.gsap-story-container .gsap-word');
+    if (allStoryWords.length > 0) {
+        gsap.fromTo(allStoryWords, 
+            { 
+                opacity: 0, 
+                y: 15
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.015, // Fast sequential wave
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.gsap-story-container',
+                    start: "top 75%",
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
+    }
+
+    // 0.5. Scroll-linked Card Expansion
+    const storySection = document.querySelector('.gsap-story-section');
+    const storyCard = document.querySelector('.gsap-story-container');
+
+    if (storySection && storyCard) {
+        // Use scale for smooth hardware-accelerated zoom without text reflow
+        gsap.set(storyCard, { scale: 0.8 });
+
+        gsap.to(storyCard, {
+            scale: 1,
             ease: "none",
             scrollTrigger: {
-                trigger: obj.parentElement,
-                start: "top bottom",
-                end: "bottom top",
+                trigger: storySection,
+                start: "top bottom", // Start expanding when section enters from bottom
+                end: "top top",      // Fully expanded when section hits top of viewport
                 scrub: true
             }
         });
+    }
+
+    // 1. General Staggered Reveal for Grid Items
+    const gsRevealElements = document.querySelectorAll('.gs-reveal');
+    gsRevealElements.forEach(el => {
+        gsap.fromTo(el, 
+            { y: 50, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
     });
+
+    // 2. Animate Skill Bars
+    const skillBars = document.querySelectorAll('.bar-fill');
+    skillBars.forEach(bar => {
+        const targetWidth = bar.getAttribute('data-width');
+        gsap.to(bar, {
+            width: targetWidth,
+            duration: 1.5,
+            ease: "power4.out",
+            scrollTrigger: {
+                trigger: bar.parentElement,
+                start: "top 90%",
+                toggleActions: "play none none reverse"
+            }
+        });
+    });
+
+
+});
+
+// ============================================================
+// 3D FLIP TEXT HOVER ANIMATION
+// ============================================================
+function initFlipText(selector) {
+    const elements = document.querySelectorAll(selector);
+    
+    elements.forEach(link => {
+        if(link.querySelector('.flip-wrapper')) return; // Already initialized
+        
+        const text = link.textContent.trim();
+        link.textContent = "";
+        
+        const wrapper = document.createElement("span");
+        wrapper.className = "flip-wrapper";
+        wrapper.style.position = "relative";
+        wrapper.style.display = "inline-block";
+        wrapper.style.overflow = "hidden";
+        wrapper.style.perspective = "500px";
+        wrapper.style.verticalAlign = "middle";
+        
+        const front = document.createElement("span");
+        front.textContent = text;
+        front.style.display = "inline-block";
+        front.style.transformOrigin = "50% 50% -10px";
+        
+        const back = document.createElement("span");
+        back.textContent = text;
+        back.style.position = "absolute";
+        back.style.left = "0";
+        back.style.top = "0";
+        back.style.display = "inline-block";
+        back.style.color = "#ff5500";
+        back.style.transformOrigin = "50% 50% -10px";
+        
+        if (typeof gsap !== 'undefined') {
+            gsap.set(back, { rotationX: -90, opacity: 0 });
+            
+            let tl = gsap.timeline({ paused: true });
+            tl.to(front, {
+                rotationX: 90,
+                opacity: 0,
+                duration: 0.35,
+                ease: "power2.inOut"
+            }, 0)
+            .to(back, {
+                rotationX: 0,
+                opacity: 1,
+                duration: 0.35,
+                ease: "power2.inOut"
+            }, 0.08); // Slight delay for the sequential feel
+            
+            link.addEventListener("mouseenter", () => tl.play());
+            link.addEventListener("mouseleave", () => tl.reverse());
+        }
+        
+        wrapper.appendChild(front);
+        wrapper.appendChild(back);
+        link.appendChild(wrapper);
+    });
+}
+
+// Apply to navbar on load
+window.addEventListener("DOMContentLoaded", () => {
+    initFlipText(".nav-right a:not(.nav-logo), .mode-toggle");
 });

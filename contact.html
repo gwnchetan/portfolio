@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chetan — Contact</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;800&family=Outfit:wght@800&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/sheryjs/dist/Shery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="stylesheet" href="css/contact.css">
+</head>
+
+<body>
+    <div id="bg-three" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></div>
+    
+    <!-- Navbar -->
+    <nav id="main-nav">
+        <a href="index.html" class="nav-logo">C/</a>
+        <ul class="nav-right">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+            <li><button class="mode-toggle" id="modeToggle">⚡ Cyber Mode</button></li>
+        </ul>
+    </nav>
+
+    <main class="contact-page">
+        <div class="contact-container">
+            <h1 class="contact-massive-heading">Contact me</h1>
+            
+            <div class="contact-grid">
+                
+                <!-- Left Details -->
+                <div class="contact-details">
+                    <div class="contact-info-block">
+                        <h4>Location</h4>
+                        <p>Rajkot, Gujarat<br>India</p>
+                    </div>
+                    
+                    <div class="contact-info-block">
+                        <h4>Availability</h4>
+                        <p>Monday - Friday<br>9:00 AM - 6:00 PM IST</p>
+                    </div>
+                    
+                    <div class="contact-info-block">
+                        <h4>Connect</h4>
+                        <p><a href="https://github.com/" target="_blank" style="color:inherit;text-decoration:none;">GitHub ↗</a></p>
+                        <p><a href="https://linkedin.com/" target="_blank" style="color:inherit;text-decoration:none;">LinkedIn ↗</a></p>
+                        <p><a href="https://instagram.com/" target="_blank" style="color:inherit;text-decoration:none;">Instagram ↗</a></p>
+                    </div>
+                </div>
+
+                <!-- Right Form -->
+                <form class="contact-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('Message feature coming soon!');">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Name (required)</label>
+                            <input type="text" placeholder="First Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <input type="text" placeholder="Last Name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Service</label>
+                        <select>
+                            <option value="" disabled selected>Select a service...</option>
+                            <option value="frontend">Creative Frontend</option>
+                            <option value="fullstack">Full Stack Development</option>
+                            <option value="portfolio">Portfolio Site</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <i class="ph ph-caret-down select-arrow"></i>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email (required)</label>
+                        <input type="email" placeholder="hello@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Project description</label>
+                        <textarea placeholder="Tell me about your project..." rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit</button>
+                    
+                </form>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Global Premium Footer will be injected here automatically by footer.js -->
+
+    <!-- Scripts -->
+    <script src="js/footer.js" defer></script>
+    <script src="js/main.js?v=2" defer></script>
+</body>
+
+</html>

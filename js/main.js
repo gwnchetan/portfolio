@@ -89,12 +89,15 @@ const cyProjects = [
 // RENDER SKILLS
 // ============================================================
 function renderSkills(data, id) {
-    document.getElementById(id).innerHTML = data.map(s =>
-        `<div class="skill-item reveal">
-            <i class="ph ${s.icon} skill-icon"></i>
-            <span class="skill-name">${s.name}</span>
-        </div>`
-    ).join('');
+    const el = document.getElementById(id);
+    if (el) {
+        el.innerHTML = data.map(s =>
+            `<div class="skill-item reveal">
+                <i class="ph ${s.icon} skill-icon"></i>
+                <span class="skill-name">${s.name}</span>
+            </div>`
+        ).join('');
+    }
 }
 renderSkills(wdSkills, 'wd-skills');
 renderSkills(cySkills, 'cy-skills');
@@ -117,6 +120,9 @@ function renderCards(data, containerId) {
                         <div class="expandable-drawer">
                             <p class="project-desc">${p.desc}</p>
                             <div class="project-stack">${p.stack.map(s => `<span class="stack-tag">${s}</span>`).join('')}</div>
+                            <div class="card-action-btn">
+                                <span>Know More</span> <i class="ph-bold ph-arrow-right"></i>
+                            </div>
                         </div>
                     </div>
                     <div class="card-media-side">
@@ -134,7 +140,7 @@ function renderCards(data, containerId) {
 
 function renderTimelineProjects(data, containerId) {
     const c = document.getElementById(containerId);
-    
+
     let html = `
     <div class="timeline-container">
         <div class="timeline-line"></div>
@@ -146,7 +152,7 @@ function renderTimelineProjects(data, containerId) {
         const urlId = p.name.toLowerCase().replace(/\s+/g, '-');
         const side = i % 2 === 0 ? 'left' : 'right';
         const num = (i + 1).toString().padStart(2, '0');
-        
+
         return `
         <div class="timeline-card-wrapper ${side}">
             <div class="timeline-connector"></div>
@@ -176,7 +182,7 @@ function renderTimelineProjects(data, containerId) {
     c.innerHTML = html;
 }
 
-renderTimelineProjects(wdProjects, 'wd-projects-grid');
+renderCards(wdProjects, 'wd-projects-grid');
 renderCards(cyProjects, 'cy-projects-grid');
 
 // ============================================================
@@ -191,7 +197,7 @@ function initScrollCardsAnimation() {
         }
     });
 
-    const wrappers = document.querySelectorAll('#cy-projects-grid .project-card-wrapper');
+    const wrappers = document.querySelectorAll('.project-card-wrapper');
     wrappers.forEach(wrapper => {
         gsap.set(wrapper, {
             transformOrigin: "top center",
@@ -222,7 +228,7 @@ initScrollCardsAnimation();
 // ============================================================
 function initTimelineAnimation() {
     gsap.registerPlugin(ScrollTrigger);
-    
+
     const container = document.querySelector('.timeline-container');
     if (!container) return;
 
@@ -244,11 +250,11 @@ function initTimelineAnimation() {
     // Cards sliding in
     cards.forEach(card => {
         const isLeft = card.classList.contains('left');
-        
-        gsap.fromTo(card, 
-            { 
-                x: isLeft ? -100 : 100, 
-                opacity: 0 
+
+        gsap.fromTo(card,
+            {
+                x: isLeft ? -100 : 100,
+                opacity: 0
             },
             {
                 x: 0,
@@ -486,13 +492,13 @@ window.addEventListener('load', () => {
     const hasLoaded = sessionStorage.getItem('hasLoaded');
 
     if (hasLoaded && navType !== 'reload') {
-        // Skip loader overlay completely
-        document.getElementById('loader-overlay').style.display = 'none';
-        
+        const loader = document.getElementById('loader-overlay');
+        if (loader) loader.style.display = 'none';
+
         // Immediately reveal nav and hero elements
-        gsap.set('nav, .hero-tag, .hero-sub, .hero-scroll, .hero-visual', { opacity: 1, y: 0, x: 0 });
+        gsap.set('nav, .hero-tag, .hero-sub, .hero-scroll, .hero-visual, .hero-eyebrow, .hero-marketing-sub, .typo-line', { opacity: 1, y: 0, x: 0 });
         gsap.set('.hero-name', { opacity: 1 });
-        
+
         Shery.textAnimate(".hero-name", {
             style: 2,
             y: 10,
@@ -523,7 +529,8 @@ window.addEventListener('load', () => {
 
     const tl = gsap.timeline({
         onComplete: () => {
-            document.getElementById('loader-overlay').style.display = 'none';
+            const loader = document.getElementById('loader-overlay');
+            if (loader) loader.style.display = 'none';
             document.body.style.overflow = '';
             lenis.start(); // Resume scrolling
         }
@@ -576,12 +583,13 @@ window.addEventListener('load', () => {
                 multiplier: 0.1,
             });
         }, "-=0.6")
-        .from('.hero-tag, .hero-sub, .hero-scroll', { y: 20, opacity: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out' }, "-=0.8")
+        .from('.hero-tag, .hero-sub, .hero-scroll, .hero-eyebrow, .hero-marketing-sub', { y: 20, opacity: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out' }, "-=0.8")
+        .from('.typo-line', { y: 40, opacity: 0, duration: 1, stagger: 0.1, ease: 'power3.out' }, "-=0.8")
         .from('.hero-visual', { x: 40, opacity: 0, duration: 1, ease: 'power3.out' }, "-=0.6")
         .add(() => {
             // Continuous floating animations for hero elements with GPU layer acceleration to prevent subpixel text jitter
-            gsap.to(".hero-tag", { y: -8, rotation: 0.01, force3D: true, duration: 2.5, repeat: -1, yoyo: true, ease: "sine.inOut" });
-            gsap.to(".hero-sub", { y: -8, rotation: 0.01, force3D: true, duration: 2.8, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 0.2 });
+            gsap.to(".hero-tag, .hero-eyebrow", { y: -8, rotation: 0.01, force3D: true, duration: 2.5, repeat: -1, yoyo: true, ease: "sine.inOut" });
+            gsap.to(".hero-sub, .hero-marketing-sub", { y: -8, rotation: 0.01, force3D: true, duration: 2.8, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 0.2 });
             gsap.to(".hero-scroll", { y: 8, rotation: 0.01, force3D: true, duration: 1.5, repeat: -1, yoyo: true, ease: "sine.inOut" });
             gsap.to(".hero-visual", { y: -12, rotation: 0.01, force3D: true, duration: 3, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 0.4 });
 
@@ -599,6 +607,58 @@ function initReveal() {
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.08 });
     els.forEach(el => { el.classList.remove('visible'); obs.observe(el); });
+
+    // Blur Text Scrub Animation for .about-text
+    const aboutTexts = document.querySelectorAll('.about-text');
+    if (aboutTexts.length > 0 && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+        aboutTexts.forEach(text => {
+            // Only split text if not already split
+            if (!text.classList.contains('split-done')) {
+                const walkDOM = (node) => {
+                    if (node.nodeType === 3) {
+                        const words = node.nodeValue.split(/(\s+)/);
+                        const fragment = document.createDocumentFragment();
+                        let hasWords = false;
+                        words.forEach(word => {
+                            if (word.trim().length > 0) {
+                                const span = document.createElement('span');
+                                span.className = 'scrub-word';
+                                span.style.display = 'inline-block';
+                                span.textContent = word;
+                                fragment.appendChild(span);
+                                hasWords = true;
+                            } else {
+                                fragment.appendChild(document.createTextNode(word));
+                            }
+                        });
+                        if (hasWords) node.parentNode.replaceChild(fragment, node);
+                    } else if (node.nodeType === 1 && !node.classList.contains('scrub-word')) {
+                        Array.from(node.childNodes).forEach(walkDOM);
+                    }
+                };
+                Array.from(text.childNodes).forEach(walkDOM);
+                text.classList.add('split-done');
+            }
+
+            const words = text.querySelectorAll('.scrub-word');
+            gsap.fromTo(words,
+                { opacity: 0.1, filter: "blur(10px)" },
+                {
+                    opacity: 1,
+                    filter: "blur(0px)",
+                    duration: 0.8,
+                    stagger: 0.02,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: text,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+    }
 }
 initReveal();
 // ============================================================
@@ -665,3 +725,69 @@ if (marqueeTracks.length > 0) {
 
     requestAnimationFrame(renderMarquee);
 }
+
+// ============================================================
+// 3D FLIP TEXT HOVER ANIMATION
+// ============================================================
+function initFlipText(selector) {
+    const elements = document.querySelectorAll(selector);
+
+    elements.forEach(link => {
+        if (link.querySelector('.flip-wrapper')) return; // Already initialized
+
+        const text = link.textContent.trim();
+        link.textContent = "";
+
+        const wrapper = document.createElement("span");
+        wrapper.className = "flip-wrapper";
+        wrapper.style.position = "relative";
+        wrapper.style.display = "inline-block";
+        wrapper.style.overflow = "hidden";
+        wrapper.style.perspective = "500px";
+        wrapper.style.verticalAlign = "middle";
+
+        const front = document.createElement("span");
+        front.textContent = text;
+        front.style.display = "inline-block";
+        front.style.transformOrigin = "50% 50% -10px";
+
+        const back = document.createElement("span");
+        back.textContent = text;
+        back.style.position = "absolute";
+        back.style.left = "0";
+        back.style.top = "0";
+        back.style.display = "inline-block";
+        back.style.color = "#ff5500";
+        back.style.transformOrigin = "50% 50% -10px";
+
+        if (typeof gsap !== 'undefined') {
+            gsap.set(back, { rotationX: -90, opacity: 0 });
+
+            let tl = gsap.timeline({ paused: true });
+            tl.to(front, {
+                rotationX: 90,
+                opacity: 0,
+                duration: 0.35,
+                ease: "power2.inOut"
+            }, 0)
+                .to(back, {
+                    rotationX: 0,
+                    opacity: 1,
+                    duration: 0.35,
+                    ease: "power2.inOut"
+                }, 0.08); // Slight delay for the sequential feel
+
+            link.addEventListener("mouseenter", () => tl.play());
+            link.addEventListener("mouseleave", () => tl.reverse());
+        }
+
+        wrapper.appendChild(front);
+        wrapper.appendChild(back);
+        link.appendChild(wrapper);
+    });
+}
+
+// Apply to navbar on load
+window.addEventListener("DOMContentLoaded", () => {
+    initFlipText(".nav-right a:not(.nav-logo), .mode-toggle");
+});
