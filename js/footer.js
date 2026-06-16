@@ -50,4 +50,43 @@ const footerHTML = `
 // Inject footer into the DOM immediately
 document.body.insertAdjacentHTML('beforeend', footerHTML);
 
-// Footer injected automatically
+// Mobile Menu Toggle Logic (Applied Globally)
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    const navRight = document.getElementById('navRight');
+    
+    if (hamburgerMenu && navRight) {
+        hamburgerMenu.addEventListener('click', () => {
+            navRight.classList.toggle('nav-active');
+            
+            // Simple animation for the SVG lines
+            const lines = hamburgerMenu.querySelectorAll('line');
+            if (navRight.classList.contains('nav-active')) {
+                lines[0].setAttribute('y1', '6');
+                lines[0].setAttribute('y2', '18');
+                lines[2].setAttribute('y1', '18');
+                lines[2].setAttribute('y2', '6');
+                lines[1].style.opacity = '0';
+            } else {
+                lines[0].setAttribute('y1', '12');
+                lines[0].setAttribute('y2', '12');
+                lines[2].setAttribute('y1', '18');
+                lines[2].setAttribute('y2', '18');
+                lines[1].style.opacity = '1';
+            }
+        });
+        
+        const navLinks = navRight.querySelectorAll('a, button');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navRight.classList.remove('nav-active');
+                const lines = hamburgerMenu.querySelectorAll('line');
+                lines[0].setAttribute('y1', '12');
+                lines[0].setAttribute('y2', '12');
+                lines[2].setAttribute('y1', '18');
+                lines[2].setAttribute('y2', '18');
+                lines[1].style.opacity = '1';
+            });
+        });
+    }
+});

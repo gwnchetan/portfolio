@@ -22,13 +22,13 @@
 
 .contact-massive-heading {
     font-family: 'Outfit', sans-serif;
-    font-size: clamp(80px, 12vw, 180px);
+    font-size: clamp(40px, 12vw, 180px);
     font-weight: 800;
     line-height: 0.9;
-    letter-spacing: -3px;
+    letter-spacing: -2px;
     color: #f0f0f0;
     margin-bottom: 80px;
-    transition: color 0.3s ease;
+    transition: color 0.4s ease;
 }
 
 .contact-grid {

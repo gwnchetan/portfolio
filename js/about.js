@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Animate all words sequentially across all paragraphs with a performant y-axis and opacity fade
     const allStoryWords = document.querySelectorAll('.gsap-story-container .gsap-word');
-    if (allStoryWords.length > 0) {
+    if (allStoryWords.length > 0 && window.innerWidth > 768) {
         gsap.fromTo(allStoryWords, 
             { 
                 opacity: 0, 
@@ -235,10 +235,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (storySection && storyCard) {
         // Use scale for smooth hardware-accelerated zoom without text reflow
-        gsap.set(storyCard, { scale: 0.8 });
+        gsap.set(storyCard, { scale: 0.8, borderRadius: "50px" });
 
         gsap.to(storyCard, {
             scale: 1,
+            borderRadius: "0px",
             ease: "none",
             scrollTrigger: {
                 trigger: storySection,
@@ -250,9 +251,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 1. General Staggered Reveal for Grid Items
-    const gsRevealElements = document.querySelectorAll('.gs-reveal');
-    gsRevealElements.forEach(el => {
-        gsap.fromTo(el, 
+    if (window.innerWidth > 768) {
+        const gsRevealElements = document.querySelectorAll('.gs-reveal');
+        gsRevealElements.forEach(el => {
+            gsap.fromTo(el, 
             { y: 50, opacity: 0 },
             {
                 y: 0,
@@ -267,6 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         );
     });
+    }
 
     // 2. Animate Skill Bars
     const skillBars = document.querySelectorAll('.bar-fill');
@@ -291,6 +294,9 @@ document.addEventListener("DOMContentLoaded", () => {
 // 3D FLIP TEXT HOVER ANIMATION
 // ============================================================
 function initFlipText(selector) {
+    // Skip on mobile to prevent overlay issues
+    if (window.innerWidth <= 768) return;
+
     const elements = document.querySelectorAll(selector);
     
     elements.forEach(link => {

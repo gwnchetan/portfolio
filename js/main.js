@@ -730,6 +730,9 @@ if (marqueeTracks.length > 0) {
 // 3D FLIP TEXT HOVER ANIMATION
 // ============================================================
 function initFlipText(selector) {
+    // Skip on mobile to prevent overlay issues
+    if (window.innerWidth <= 768) return;
+    
     const elements = document.querySelectorAll(selector);
 
     elements.forEach(link => {
