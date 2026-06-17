@@ -200,22 +200,17 @@ function initScrollCardsAnimation() {
     const wrappers = document.querySelectorAll('.project-card-wrapper');
     wrappers.forEach(wrapper => {
         gsap.set(wrapper, {
-            transformOrigin: "top center",
-            scale: 0.88,
-            rotationX: 12,
-            y: 80
+            opacity: 0.3
         });
 
         gsap.to(wrapper, {
-            scale: 1.0,
-            rotationX: 0,
-            y: 0,
+            opacity: 1,
             ease: "none",
             scrollTrigger: {
                 trigger: wrapper,
-                start: "top 95%",
-                end: "top 25%",
-                scrub: 1.2,
+                start: "top 90%",
+                end: "top 50%",
+                scrub: 1,
                 invalidateOnRefresh: true
             }
         });
@@ -701,7 +696,8 @@ if (marqueeTracks.length > 0) {
         mScrollVel += delta;
         mScrollVel *= 0.9;
 
-        mCurrentX -= (1.5 + mScrollVel * 0.08);
+        let baseSpeed = window.innerWidth <= 768 ? 0.6 : 1.5;
+        mCurrentX -= (baseSpeed + mScrollVel * 0.08);
 
         if (mCurrentX <= -singleSetWidth) {
             mCurrentX += singleSetWidth;
