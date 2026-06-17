@@ -37,9 +37,9 @@ const footerHTML = `
                 <span class="footer-copy">© Copyright 2026. Chetan. All rights reserved.</span>
                 <span id="footer-mode" class="footer-terms mode-indicator">Web Dev Mode</span>
                 <div class="footer-social-icons">
-                    <a href="https://github.com/" target="_blank"><i class="ph ph-github-logo"></i></a>
-                    <a href="https://linkedin.com/" target="_blank"><i class="ph ph-linkedin-logo"></i></a>
-                    <a href="https://instagram.com/" target="_blank"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="https://github.com/gwnchetan" target="_blank"><i class="ph ph-github-logo"></i></a>
+                    <a href="https://www.linkedin.com/in/chandrbhan-sakre-76a40b237/" target="_blank"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="https://www.instagram.com/__chetan_sakre__?igsh=MXZsMThnbTJ2M2lteg==" target="_blank"><i class="ph ph-instagram-logo"></i></a>
                 </div>
             </div>
 

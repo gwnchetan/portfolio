@@ -342,61 +342,7 @@ window.addEventListener('DOMContentLoaded', () => {
 // MODAL (REMOVED: Cards now redirect to project.html)
 // ============================================================
 
-// ============================================================
-// MODE TOGGLE
-// ============================================================
-let isCyber = false;
-const overlay = document.getElementById('mode-overlay');
 
-document.getElementById('modeToggle').addEventListener('click', () => {
-    const btn = document.getElementById('modeToggle');
-
-    // Subtle text glitch effect
-    document.body.classList.add('mode-transitioning');
-
-    overlay.style.background = isCyber ? '#ff5500' : '#00ff41';
-
-    // Smooth transition overlay
-    gsap.to(overlay, {
-        opacity: 1,
-        duration: 0.25,
-        ease: 'power2.in',
-        onComplete: () => {
-            isCyber = !isCyber;
-
-            if (isCyber) {
-                document.body.classList.add('cyber-mode');
-                document.getElementById('webdev-content').style.display = 'none';
-                document.getElementById('cyber-content').style.display = 'block';
-                btn.textContent = '◈ Dev Mode';
-                document.getElementById('footer-mode').textContent = 'Cyber Mode';
-            } else {
-                document.body.classList.remove('cyber-mode');
-                document.getElementById('webdev-content').style.display = 'block';
-                document.getElementById('cyber-content').style.display = 'none';
-                btn.textContent = '⚡ Cyber Mode';
-                document.getElementById('footer-mode').textContent = 'Web Dev Mode';
-            }
-
-            window.scrollTo(0, 0);
-            initReveal();
-            initTiltEffect();
-            initScrollCardsAnimation();
-            initTimelineAnimation();
-            setTimeout(initProject3DScenes, 100);
-            if (window.particleSetMode) window.particleSetMode(isCyber ? 'cyber' : 'dev');
-
-            // Recalculate ScrollTrigger positions after layout toggle
-            ScrollTrigger.refresh();
-
-            gsap.to(overlay, { opacity: 0, duration: 0.35, delay: 0.05, ease: 'power2.out' });
-
-            setTimeout(() => {
-                document.body.classList.remove('mode-transitioning');
-            }, 100);
-        }
-    });
-});
 
 // ============================================================
 // 3D TILT EFFECT FOR PROJECT CARDS
@@ -435,26 +381,7 @@ initTiltEffect();
 
 
 
-// ============================================================
-// SMOOTH SCROLLING (LENIS)
-// ============================================================
-const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    direction: 'vertical',
-    gestureDirection: 'vertical',
-    smooth: true,
-    mouseMultiplier: 1,
-    smoothTouch: false,
-    touchMultiplier: 2,
-    infinite: false,
-});
 
-function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
 
 // ============================================================
 // SCRAMBLE TEXT FUNCTION
@@ -518,7 +445,7 @@ window.addEventListener('load', () => {
     sessionStorage.setItem('hasLoaded', 'true');
 
     document.body.style.overflow = 'hidden';
-    lenis.stop(); // Pause smooth scrolling during load
+    if(window.lenis) window.lenis.stop(); // Pause smooth scrolling during load
 
     // Scramble the logo text
     const logoEl = document.getElementById('loader-logo');
@@ -529,7 +456,7 @@ window.addEventListener('load', () => {
             const loader = document.getElementById('loader-overlay');
             if (loader) loader.style.display = 'none';
             document.body.style.overflow = '';
-            lenis.start(); // Resume scrolling
+            if(window.lenis) window.lenis.start(); // Resume scrolling
         }
     });
 
@@ -723,72 +650,4 @@ if (marqueeTracks.length > 0) {
 
     requestAnimationFrame(renderMarquee);
 }
-
-// ============================================================
-// 3D FLIP TEXT HOVER ANIMATION
-// ============================================================
-function initFlipText(selector) {
-    // Skip on mobile to prevent overlay issues
-    if (window.innerWidth <= 768) return;
-    
-    const elements = document.querySelectorAll(selector);
-
-    elements.forEach(link => {
-        if (link.querySelector('.flip-wrapper')) return; // Already initialized
-
-        const text = link.textContent.trim();
-        link.textContent = "";
-
-        const wrapper = document.createElement("span");
-        wrapper.className = "flip-wrapper";
-        wrapper.style.position = "relative";
-        wrapper.style.display = "inline-block";
-        wrapper.style.overflow = "hidden";
-        wrapper.style.perspective = "500px";
-        wrapper.style.verticalAlign = "middle";
-
-        const front = document.createElement("span");
-        front.textContent = text;
-        front.style.display = "inline-block";
-        front.style.transformOrigin = "50% 50% -10px";
-
-        const back = document.createElement("span");
-        back.textContent = text;
-        back.style.position = "absolute";
-        back.style.left = "0";
-        back.style.top = "0";
-        back.style.display = "inline-block";
-        back.style.color = "#ff5500";
-        back.style.transformOrigin = "50% 50% -10px";
-
-        if (typeof gsap !== 'undefined') {
-            gsap.set(back, { rotationX: -90, opacity: 0 });
-
-            let tl = gsap.timeline({ paused: true });
-            tl.to(front, {
-                rotationX: 90,
-                opacity: 0,
-                duration: 0.35,
-                ease: "power2.inOut"
-            }, 0)
-                .to(back, {
-                    rotationX: 0,
-                    opacity: 1,
-                    duration: 0.35,
-                    ease: "power2.inOut"
-                }, 0.08); // Slight delay for the sequential feel
-
-            link.addEventListener("mouseenter", () => tl.play());
-            link.addEventListener("mouseleave", () => tl.reverse());
-        }
-
-        wrapper.appendChild(front);
-        wrapper.appendChild(back);
-        link.appendChild(wrapper);
-    });
-}
-
-// Apply to navbar on load
-window.addEventListener("DOMContentLoaded", () => {
-    initFlipText(".nav-right a:not(.nav-logo), .mode-toggle");
-});
+

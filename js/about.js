@@ -114,20 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ============================================================
-    // SMOOTH SCROLLING (LENIS)
-    // ============================================================
-    const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smooth: true
-    });
 
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
 
     // ============================================================
     // NAVBAR COLOR TOGGLE
@@ -290,71 +277,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-// ============================================================
-// 3D FLIP TEXT HOVER ANIMATION
-// ============================================================
-function initFlipText(selector) {
-    // Skip on mobile to prevent overlay issues
-    if (window.innerWidth <= 768) return;
-
-    const elements = document.querySelectorAll(selector);
-    
-    elements.forEach(link => {
-        if(link.querySelector('.flip-wrapper')) return; // Already initialized
-        
-        const text = link.textContent.trim();
-        link.textContent = "";
-        
-        const wrapper = document.createElement("span");
-        wrapper.className = "flip-wrapper";
-        wrapper.style.position = "relative";
-        wrapper.style.display = "inline-block";
-        wrapper.style.overflow = "hidden";
-        wrapper.style.perspective = "500px";
-        wrapper.style.verticalAlign = "middle";
-        
-        const front = document.createElement("span");
-        front.textContent = text;
-        front.style.display = "inline-block";
-        front.style.transformOrigin = "50% 50% -10px";
-        
-        const back = document.createElement("span");
-        back.textContent = text;
-        back.style.position = "absolute";
-        back.style.left = "0";
-        back.style.top = "0";
-        back.style.display = "inline-block";
-        back.style.color = "#ff5500";
-        back.style.transformOrigin = "50% 50% -10px";
-        
-        if (typeof gsap !== 'undefined') {
-            gsap.set(back, { rotationX: -90, opacity: 0 });
-            
-            let tl = gsap.timeline({ paused: true });
-            tl.to(front, {
-                rotationX: 90,
-                opacity: 0,
-                duration: 0.35,
-                ease: "power2.inOut"
-            }, 0)
-            .to(back, {
-                rotationX: 0,
-                opacity: 1,
-                duration: 0.35,
-                ease: "power2.inOut"
-            }, 0.08); // Slight delay for the sequential feel
-            
-            link.addEventListener("mouseenter", () => tl.play());
-            link.addEventListener("mouseleave", () => tl.reverse());
-        }
-        
-        wrapper.appendChild(front);
-        wrapper.appendChild(back);
-        link.appendChild(wrapper);
-    });
-}
-
-// Apply to navbar on load
-window.addEventListener("DOMContentLoaded", () => {
-    initFlipText(".nav-right a:not(.nav-logo), .mode-toggle");
-});
