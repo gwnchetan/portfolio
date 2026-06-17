@@ -121,7 +121,9 @@ function renderCards(data, containerId) {
                             <p class="project-desc">${p.desc}</p>
                             <div class="project-stack">${p.stack.map(s => `<span class="stack-tag">${s}</span>`).join('')}</div>
                             <div class="card-action-btn">
-                                <span>Know More</span> <i class="ph-bold ph-arrow-right"></i>
+                                <i class="ph ph-arrow-right btn-arrow-left"></i>
+                                <span class="btn-text">Know More</span>
+                                <i class="ph ph-arrow-right btn-arrow-right"></i>
                             </div>
                         </div>
                     </div>

@@ -591,17 +591,20 @@ body.cyber-mode .about-text {
     transform: translateX(0);
 }
 
-.about-btn:hover .btn-arrow-left {
+.about-btn:hover .btn-arrow-left,
+.project-card:hover .card-action-btn .btn-arrow-left {
     opacity: 1;
     transform: translateX(0);
 }
 
-.about-btn:hover .btn-arrow-right {
+.about-btn:hover .btn-arrow-right,
+.project-card:hover .card-action-btn .btn-arrow-right {
     opacity: 0;
     transform: translateX(40px);
 }
 
-.about-btn:hover .btn-text {
+.about-btn:hover .btn-text,
+.project-card:hover .card-action-btn .btn-text {
     transform: translateX(16px);
 }
 
@@ -1229,11 +1232,8 @@ body.cyber-mode .project-desc {
     letter-spacing: 1.5px;
     text-transform: uppercase;
     transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.card-action-btn i {
-    font-size: 1.2rem;
-    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+    overflow: hidden;
 }
 
 .project-card:hover .card-action-btn {
@@ -1242,9 +1242,6 @@ body.cyber-mode .project-desc {
     color: #e55a39;
 }
 
-.project-card:hover .card-action-btn i {
-    transform: translateX(6px);
-}
 
 body.cyber-mode .project-card:hover .card-action-btn {
     border-color: #00ff41;

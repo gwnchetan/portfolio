@@ -315,7 +315,6 @@ body {
 }
 
 .about-section {
-    min-height: 100vh;
     display: flex;
     align-items: center;
     padding: 100px 10%;
