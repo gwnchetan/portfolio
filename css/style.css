@@ -659,9 +659,100 @@ body.cyber-mode .about-btn:hover {
     color: transparent;
     background: linear-gradient(135deg, #f0f0f0, #e55a39);
     -webkit-background-clip: text;
-    background-clip: text;
-    line-height: 1;
-    transition: all 0.4s;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Dual Interactive Cards (replaces 4 stat cards) */
+.dual-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 40px 30px;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.dual-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(229, 90, 57, 0.05), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 0;
+}
+
+.dual-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(229, 90, 57, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(229, 90, 57, 0.05);
+}
+
+.dual-card:hover::before {
+    opacity: 1;
+}
+
+.dual-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.dual-card .stat-icon {
+    font-size: 2.8rem;
+    color: #e55a39;
+    margin-bottom: 20px;
+}
+
+.dual-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: #f0f0f0;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.dual-desc {
+    font-family: 'Inter', sans-serif;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.dual-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: auto;
+}
+
+.dual-list li {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dual-list li::before {
+    content: '→';
+    color: #e55a39;
 }
 
 .stat-label {
@@ -1127,7 +1218,9 @@ body.cyber-mode .project-card:hover {
 .media-placeholder {
     width: 100%;
     height: 100%;
-    background: repeating-linear-gradient(45deg, #080808, #080808 10px, #050505 10px, #050505 20px);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1135,7 +1228,9 @@ body.cyber-mode .project-card:hover {
 }
 
 body.cyber-mode .media-placeholder {
-    background: repeating-linear-gradient(45deg, #020502, #020502 10px, #050a05 10px, #050a05 20px);
+    background: rgba(2, 5, 2, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .media-overlay {

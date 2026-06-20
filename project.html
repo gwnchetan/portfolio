@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details — Chetan</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;800&family=Outfit:wght@800&family=Share+Tech+Mono&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/sheryjs/dist/Shery.js"></script>
+    <link rel="stylesheet" href="css/style.css?v=2">
+</head>
+
+<body>
+    <!-- 3D Particle Background -->
+    <div id="bg-three" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></div>
+
+    <!-- Loader (Optional for single project page, but keeping consistent) -->
+    <div class="loader-overlay" id="loader-overlay">
+        <!-- Techy Shutters -->
+        <div class="shutter"></div><div class="shutter"></div><div class="shutter"></div><div class="shutter"></div><div class="shutter"></div>
+        <div class="loader-content">
+            <h1 class="loader-logo" id="loader-logo">LOADING...</h1>
+        </div>
+    </div>
+
+    <!-- Transition Overlay -->
+    <div class="mode-overlay" id="mode-overlay"></div>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="index.html" class="nav-logo">C/</a>
+        <ul class="nav-right" id="navRight">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#projects" class="active">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="hamburger-menu" id="hamburgerMenu" aria-label="Toggle Menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+    </nav>
+
+
+
+    <!-- Project Content Container (Hidden until data loads) -->
+    <div id="project-content" style="opacity: 0;">
+        <!-- HERO SECTION -->
+        <section class="hero agency-hero" style="min-height: 80vh;">
+            <div class="agency-hero-bg"></div>
+            <div class="agency-hero-container" style="justify-content: flex-end; padding-bottom: 10vh;">
+                <div class="hero-logo-container" style="display: none; margin-bottom: 30px;">
+                    <img id="proj-logo" src="" alt="Project Logo" style="max-height: 200px; width: auto; object-fit: contain; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5)); transform-origin: left bottom;">
+                </div>
+                <p class="agency-eyebrow" id="proj-tag">/tag</p>
+                <h1 class="agency-massive-text" id="proj-name">Project Name</h1>
+                <div class="agency-bottom" style="margin-top: 40px;">
+                    <div class="agency-cta-group">
+                        <div class="project-links">
+                            <a href="#" id="proj-live" class="btn-agency-cta magnetic-btn" target="_blank" style="display:none;">Live Demo <span class="red-pin"></span></a>
+                            <a href="#" id="proj-github" class="btn-agency-cta magnetic-btn" target="_blank" style="display:none;">GitHub <span class="red-pin"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN DETAILS -->
+        <div class="story-overlap">
+            <section class="about" style="padding-top: 80px;">
+                <div class="reveal">
+                    <p class="section-eyebrow">01 — Overview</p>
+                    <h2 class="section-title">THE BUILD</h2>
+                    <p class="about-text" id="proj-desc" style="font-size: 1.8rem; line-height: 1.6; max-width: 800px; margin-bottom: 40px;">
+                        Description
+                    </p>
+                    <p class="about-text" id="proj-details" style="opacity: 1; font-size: 1.2rem; line-height: 1.8; max-width: 800px;">
+                        Detailed text...
+                    </p>
+                </div>
+                
+                <div style="margin-top: 60px;" class="reveal">
+                    <p class="section-eyebrow">02 — Role</p>
+                    <h3 style="font-family: 'Share Tech Mono', monospace; font-size: 1.5rem; margin-bottom: 20px; text-transform: uppercase;">My Contribution</h3>
+                    <p class="about-text" id="proj-role" style="opacity: 1; font-size: 1.2rem; line-height: 1.8; max-width: 800px;">
+                        Role details...
+                    </p>
+                </div>
+            </section>
+
+            <!-- FEATURES & STACK -->
+            <section class="skills stack-section" style="text-align: center;">
+                <div class="skills-header reveal" style="padding: 0;">
+                    <p class="section-eyebrow">03 — Tech & Features</p>
+                    <h2 class="section-title">WHAT'S INSIDE</h2>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px auto 0; max-width: 1000px;" class="proj-split-grid reveal">
+                    <div>
+                        <h3 style="font-family: 'Share Tech Mono', monospace; font-size: 1.5rem; margin-bottom: 20px; text-transform: uppercase; color: #ff5500; text-align: center;">Tech Stack</h3>
+                        <div class="stack-tags" id="proj-stack" style="justify-content: center;">
+                            <!-- Stack injected here -->
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="font-family: 'Share Tech Mono', monospace; font-size: 1.5rem; margin-bottom: 20px; text-transform: uppercase; color: #ff5500; text-align: center;">Key Features</h3>
+                        <div style="display: flex; justify-content: center;">
+                            <ul id="proj-features" style="list-style: none; padding: 0; font-family: 'DM Sans', sans-serif; font-size: 1.3rem; line-height: 1.8; text-align: left;">
+                                <!-- Features injected here -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MEDIA GALLERY -->
+            <section class="projects" id="gallery-section" style="display: none;">
+                <!-- Video Container (Scrolls normally) -->
+                <div id="proj-video-container" class="reveal" style="display: none; width: 100%; margin-bottom: 60px; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+                    <video id="proj-video" controls style="width: 100%; display: block;" autoplay muted loop playsinline></video>
+                </div>
+
+                <!-- Pinned Container for Header and Horizontal Gallery -->
+                <div id="gallery-pin-container" style="width: 100%; padding-top: 10vh;">
+                    <div class="projects-header reveal" style="margin-bottom: 40px; position: relative !important; top: 0 !important;">
+                        <p class="section-eyebrow">04 — Visuals</p>
+                        <h2 class="section-title">GALLERY</h2>
+                    </div>
+                    
+                    <!-- Screenshots Wrapper for Horizontal Scroll -->
+                    <div class="horizontal-scroll-wrapper" style="overflow: visible; width: 100vw; margin-left: calc(-50vw + 50%); padding: 5vh 0;">
+                        <div id="proj-screenshots" style="display: flex; gap: 60px; padding: 0 50vw 0 5vw; width: max-content; align-items: center;">
+                            <!-- Images injected here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Global Premium Footer is injected via js/footer.js -->
+
+    <script src="js/global.js" defer></script>
+    <script src="js/projects-data.js" defer></script>
+    <script src="js/project.js" defer></script>
+    <script src="js/particles.js" defer></script>
+    <script src="js/footer.js" defer></script>
+
+    <style>
+        /* Responsive tweaks for the split grid */
+        @media (max-width: 1024px) {
+            .proj-split-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* Mobile Gallery Overrides */
+            .horizontal-scroll-wrapper {
+                overflow-x: auto !important;
+                scroll-snap-type: x mandatory;
+                padding: 2vh 0 !important;
+                scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch;
+                scroll-padding: 0 10vw;
+            }
+            .horizontal-scroll-wrapper::-webkit-scrollbar {
+                display: none;
+            }
+            #proj-screenshots {
+                display: flex !important; /* Enforce flex in case JS clears inline style */
+                padding: 0 12.5vw !important; /* Center the first/last items */
+                gap: 5vw !important;
+            }
+            .screenshot-wrapper {
+                scroll-snap-align: center;
+                height: 60vh !important;
+                width: 75vw !important; 
+                flex-shrink: 0;
+                border-radius: 24px !important;
+                background: #0a0a0a !important;
+                border: 1px solid rgba(255,255,255,0.05);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+            }
+            .screenshot-wrapper img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain !important;
+                border-radius: 24px !important;
+            }
+        }
+        #proj-features li::before {
+            content: "→";
+            color: #ff5500;
+            margin-right: 10px;
+            font-family: 'Share Tech Mono';
+        }
+        
+        /* Interactive Hover States */
+        .stack-tag {
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .stack-tag:hover {
+            transform: translateY(-5px) scale(1.05) !important;
+            box-shadow: 0 10px 20px rgba(255, 85, 0, 0.2);
+            border-color: var(--primary-color) !important;
+            color: var(--primary-color) !important;
+            z-index: 10;
+        }
+
+        .magnetic-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+    </style>
+</body>
+</html>

@@ -31,59 +31,8 @@ const cySkills = [
     { name: 'Metasploit', icon: 'ph-skull' }
 ];
 
-const wdProjects = [
-    {
-        name: 'chatterBOX',
-        tag: 'Full Stack',
-        desc: 'Social media platform inspired by X and Instagram. Real-time chat, notifications, follow system.',
-        stack: ['React', 'Node.js', 'Socket.IO', 'MongoDB', 'JWT', 'Multer'],
-        details: 'Full-stack social platform with real-time WebSocket chat, JWT auth, Socket.IO notifications, and a follow/request system modeled on Instagram. Migrated from Flask + MongoDB Atlas to React + Node.js. Features file uploads, like system, and real-time notification delivery.',
-        github: '#', live: '#'
-    },
-    {
-        name: 'Movie Times',
-        tag: 'Frontend',
-        desc: 'Netflix-style movie app with glassmorphism UI, infinite scroll, genre filtering, trailer modals.',
-        stack: ['React', 'Vite', 'Redux Toolkit', 'Axios', 'TMDB API'],
-        details: 'Netflix-inspired movie web app built with React + Vite and Redux Toolkit. Pulls from the TMDB API. Glassmorphism dark UI with purple accents (#7c3aed), infinite scroll, genre filtering, trailer modal, and a Skeleton loader system. Built for a batch competition.',
-        github: '#', live: '#'
-    },
-    {
-        name: 'logdrop',
-        tag: 'CLI Tool',
-        desc: 'Node.js CLI that strips debug console.log before push, while preserving console.error and console.warn.',
-        stack: ['Node.js', 'CLI', 'NPM'],
-        details: 'An open-source CLI tool born from a real frustration — accidentally pushing debug logs to production. logdrop strips console.log statements pre-commit while intelligently preserving .error and .warn. Small, focused, actually useful.',
-        github: '#', live: null
-    },
-    {
-        name: 'N.O.V.A.',
-        tag: 'AI Agent',
-        desc: 'Privacy-first local AI agent for Kali Linux. File system control, terminal access, offline voice.',
-        stack: ['Python', 'Flask', 'Ollama', 'ChromaDB', 'Whisper', 'SQLite'],
-        details: 'Locally-running, privacy-first AI agent for Kali Linux. Flask + Tailwind UI, Ollama as local brain (Llama 3.2 / Phi-3.5). Python Safety Gate classifies terminal commands as Safe/Risky/Dangerous. Features real-time security monitoring, offline voice via Whisper, local SQLite memory, and a bug bounty module with RAG over CVE/OWASP data.',
-        github: '#', live: null
-    }
-];
-
-const cyProjects = [
-    {
-        name: 'N.O.V.A.',
-        tag: 'Security Tool',
-        desc: 'Local AI with Safety Gate, CVE/exploit-db RAG module, and full offline operation on Kali.',
-        stack: ['Python', 'Kali Linux', 'ChromaDB', 'Ollama', 'RAG', 'OWASP'],
-        details: 'The security brain of N.O.V.A. Dedicated bug bounty module powered by RAG over local CVE, exploit-db, and OWASP data in ChromaDB. Safety Gate classifies every terminal command before execution — Safe/Risky/Dangerous. Fully offline. Never deletes permanently, never auto-submits.',
-        github: '#', live: null
-    },
-    {
-        name: 'Instagram Intercept',
-        tag: 'Research',
-        desc: 'TLS MITM research using mitmproxy to intercept Instagram API responses and study private API patterns.',
-        stack: ['mitmproxy', 'Python', 'Burp Suite', 'TLS MITM'],
-        details: 'A serious learning experiment in private API reverse engineering and proxy interception. Using mitmproxy and Burp Suite to intercept decrypted Instagram API traffic (reels, posts, feed). Goal: understand undocumented API structures and TLS MITM techniques in a controlled environment.',
-        github: null, live: null
-    }
-];
+const wdProjects = wdProjectsOrder.map(id => projectsData[id]);
+const cyProjects = cyProjectsOrder.map(id => projectsData[id]);
 
 // ============================================================
 // RENDER SKILLS
@@ -107,8 +56,9 @@ renderSkills(cySkills, 'cy-skills');
 // ============================================================
 function renderCards(data, containerId) {
     const c = document.getElementById(containerId);
+    if (!c) return;
     c.innerHTML = data.map((p, i) => {
-        const urlId = p.name.toLowerCase().replace(/\s+/g, '-');
+        const urlId = p.id;
         return `
         <div class="project-card-wrapper">
             <a href="project.html?id=${urlId}" class="project-card reveal">
@@ -127,8 +77,8 @@ function renderCards(data, containerId) {
                             </div>
                         </div>
                     </div>
-                    <div class="card-media-side">
-                        <div class="media-placeholder">
+                    <div class="card-media-side" style="${p.heroImage && p.heroImage !== 'images/placeholder-hero.jpg' ? `background-image: url('${p.heroImage}'); background-size: contain; background-repeat: no-repeat; background-position: center;` : ''}">
+                        <div class="media-placeholder" style="${p.heroImage && p.heroImage !== 'images/placeholder-hero.jpg' ? 'opacity: 0; transition: opacity 0.3s ease;' : ''}" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'">
                             <span class="card-arrow">↗</span>
                             <div class="media-overlay">View Project</div>
                         </div>
@@ -151,7 +101,7 @@ function renderTimelineProjects(data, containerId) {
     `;
 
     html += data.map((p, i) => {
-        const urlId = p.name.toLowerCase().replace(/\s+/g, '-');
+        const urlId = p.id;
         const side = i % 2 === 0 ? 'left' : 'right';
         const num = (i + 1).toString().padStart(2, '0');
 

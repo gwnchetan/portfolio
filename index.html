@@ -53,10 +53,10 @@
     <nav>
         <a href="#" class="nav-logo">C/</a>
         <ul class="nav-right" id="navRight">
+            <li><a href="index.html" class="active">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><button class="mode-toggle" id="modeToggle">⚡ Cyber Mode</button></li>
         </ul>
         <button class="hamburger-menu" id="hamburgerMenu" aria-label="Toggle Menu">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -152,26 +152,26 @@
                         <i class="ph ph-arrow-right btn-arrow-right"></i>
                     </a>
                 </div>
-                <div class="stats-grid reveal">
-                    <div class="stat-card">
-                        <i class="ph ph-folder-open stat-icon"></i>
-                        <div class="stat-val">4+</div>
-                        <div class="stat-label">Projects Built</div>
+                <div class="stats-grid dual-cards reveal">
+                    <div class="dual-card">
+                        <i class="ph ph-terminal-window stat-icon"></i>
+                        <h3 class="dual-title">Backend Architecture</h3>
+                        <p class="dual-desc">Scalable APIs, secure databases, and real-time sockets. Built for performance and reliability.</p>
+                        <ul class="dual-list">
+                            <li>Node.js / Express</li>
+                            <li>MongoDB / Firestore</li>
+                            <li>Socket.io / REST</li>
+                        </ul>
                     </div>
-                    <div class="stat-card">
-                        <i class="ph ph-stack stat-icon"></i>
-                        <div class="stat-val">8+</div>
-                        <div class="stat-label">Technologies</div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="ph ph-globe stat-icon"></i>
-                        <div class="stat-val">2</div>
-                        <div class="stat-label">Domains</div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="ph ph-infinity stat-icon"></i>
-                        <div class="stat-val">∞</div>
-                        <div class="stat-label">Things to Learn</div>
+                    <div class="dual-card">
+                        <i class="ph ph-magic-wand stat-icon"></i>
+                        <h3 class="dual-title">Creative Frontend</h3>
+                        <p class="dual-desc">Immersive interfaces, WebGL rendering, and butter-smooth GSAP animations.</p>
+                        <ul class="dual-list">
+                            <li>React / WebGL</li>
+                            <li>GSAP / Three.js</li>
+                            <li>Tailwind CSS</li>
+                        </ul>
                     </div>
                 </div>
             </section>
@@ -261,6 +261,9 @@
                     <h2 class="section-title">WHAT I BUILT</h2>
                 </div>
                 <div class="projects-grid" id="wd-projects-grid"></div>
+                <div class="more-projects-soon reveal" style="text-align: center; margin-top: 80px; margin-bottom: 20px;">
+                    <p style="font-family: 'Share Tech Mono', monospace; color: rgba(255,255,255,0.5); font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase;">More projects will be added soon...</p>
+                </div>
             </section>
 
         </div> <!-- End story-overlap -->
@@ -362,6 +365,7 @@
     <!-- Global Premium Footer is injected via js/footer.js -->
 
     <script src="js/global.js" defer></script>
+    <script src="js/projects-data.js" defer></script>
     <script src="js/footer.js" defer></script>
     <script src="js/main.js?v=2" defer></script>
     <script src="js/particles.js" defer></script>
