@@ -13,9 +13,14 @@ const footerHTML = `
 
                 <div class="footer-col center-col">
                     <h3 class="footer-collab-text">Got a project? Want to collaborate?</h3>
-                    <a href="mailto:csakre634@gmail.com" class="discuss-btn">
-                        Discuss your project <i class="ph-fill ph-caret-right"></i>
-                    </a>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <a href="mailto:csakre634@gmail.com" class="discuss-btn">
+                            Discuss your project <i class="ph-fill ph-caret-right"></i>
+                        </a>
+                        <a href="doc/Resume.pdf" download="Chetan_Resume.pdf" class="discuss-btn" style="background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #fff;">
+                            Resume <i class="ph ph-download-simple"></i>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="footer-col right-col">
