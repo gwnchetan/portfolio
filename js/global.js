@@ -173,6 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if(typeof window.initTiltEffect === 'function') window.initTiltEffect();
         if(typeof window.initScrollCardsAnimation === 'function') window.initScrollCardsAnimation();
         if(typeof window.initTimelineAnimation === 'function') window.initTimelineAnimation();
+        if(typeof window.initScrollLineAnimation === 'function') window.initScrollLineAnimation();
         if(typeof window.initProject3DScenes === 'function') setTimeout(window.initProject3DScenes, 100);
         if(typeof window.particleSetMode === 'function') window.particleSetMode(window.isCyber ? 'cyber' : 'dev');
 

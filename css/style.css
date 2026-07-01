@@ -674,8 +674,8 @@ body.cyber-mode .about-btn:hover {
 .dual-card {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     border-radius: 20px;
     padding: 40px 30px;
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
@@ -1142,7 +1142,9 @@ body.cyber-mode .skill-item:hover {
 .project-card {
     width: 100%;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    background: #121212;
+    background: rgba(18, 18, 18, 0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     /* Solid charcoal for readability and perfect stacking */
     border-radius: 32px;
     transition: box-shadow 0.4s, border-color 0.4s;
@@ -1207,12 +1209,12 @@ body.cyber-mode .card-glow-blob {
     flex: 1;
     border-radius: 20px;
     overflow: hidden;
-    background: #050505;
+    background: rgba(0, 0, 0, 0.25);
     position: relative;
     min-height: 400px;
     /* Increased height as requested */
     transition: flex 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    border: 1px solid #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1509,9 +1511,10 @@ body.cyber-mode .projects {
 }
 
 body.cyber-mode .project-card {
-    background: #080808;
-    /* Solid deep black for Cyber mode stacking */
-    border-color: #0a1a0a;
+    background: rgba(5, 5, 5, 0.96);
+    border-color: rgba(0, 255, 65, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 body.cyber-mode .contact {
@@ -4107,4 +4110,47 @@ body.cyber-mode .hamburger-menu {
     .marquee-track {
         gap: 15px;
     }
+}
+
+/* === CONTAINER TRANSPARENCY OVERRIDES === */
+.story-overlap,
+.tech-marquee-section,
+.about,
+.skills,
+.projects {
+    background: transparent !important;
+}
+
+/* === SCROLL-DRAWN DECORATIVE LINE === */
+.scroll-drawn-line-wrap {
+    position: absolute;
+    left: 45px;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.scroll-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.scroll-path-bg {
+    stroke: rgba(255, 255, 255, 0.03);
+    stroke-width: 2;
+    fill: none;
+}
+
+.scroll-path-fill {
+    stroke: #ff5500;
+    stroke-width: 2;
+    fill: none;
+    filter: drop-shadow(0 0 5px #ff5500);
+}
+
+body.cyber-mode .scroll-path-fill {
+    stroke: #00ff41;
+    filter: drop-shadow(0 0 5px #00ff41);
 }

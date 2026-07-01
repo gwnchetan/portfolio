@@ -176,6 +176,7 @@
         uniform float uRingWidth2;
         uniform float uRingDisplacement;
         uniform float uSweepAngle;
+        uniform float uScrollOffset;
 
         ${NOISE_GLSL}
 
@@ -184,6 +185,14 @@
             vec2  refPos   = texture2D(uPosRefs,  vUv).xy;
             float scale    = pFrame.z;
             float velocity = pFrame.w;
+
+            // Apply scroll parallax to reference Y and wrap within viewport [-1.0, 1.0]
+            float originalRefY = refPos.y;
+            refPos.y = mod(refPos.y + uScrollOffset + 1.0, 2.0) - 1.0;
+
+            // Adjust the previous frame position by the wrapping difference
+            // to maintain physical continuity and avoid spring jump glitches
+            pFrame.y += (refPos.y - originalRefY);
 
             // Damped displacement from rest
             vec2 pos = pFrame.xy * 0.8;
@@ -426,6 +435,7 @@
         uRingWidth2:       { value: RING_WIDTH2 },
         uRingDisplacement: { value: RING_DISPLACEMENT },
         uSweepAngle:       { value: 0.0 },
+        uScrollOffset:     { value: 0.0 },
     };
 
     simScene.add(new THREE.Mesh(
@@ -557,6 +567,10 @@
         const ringRadius = RING_RADIUS_MIN +
             (RING_RADIUS_MAX - RING_RADIUS_MIN) * (Math.sin(elapsed * 0.08) * 0.5 + 0.5);
 
+        // Calculate scroll parallax offset (ratio of 0.4 feels natural)
+        const currentScroll = window.lenis ? window.lenis.scroll : window.scrollY;
+        const scrollOffset = (currentScroll / window.innerHeight) * 2.0 * 0.4;
+
         // ---- PASS 1: Simulation → targetB ----
         simUniforms.uPosition.value            = targetA.texture;
         simUniforms.uRingPos.value.copy(ringPos);
@@ -567,6 +581,7 @@
         simUniforms.uRingRadius.value          = ringRadius;
         simUniforms.uPosRefs.value             = posRefsTex;
         simUniforms.uSweepAngle.value          = (elapsed * 0.18) % (Math.PI * 2);
+        simUniforms.uScrollOffset.value        = scrollOffset;
 
         renderer.setRenderTarget(targetB);
         renderer.render(simScene, simCam);

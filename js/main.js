@@ -171,6 +171,32 @@ function initScrollCardsAnimation() {
 initScrollCardsAnimation();
 
 // ============================================================
+// SCROLL-DRAWN LINE GSAP ANIMATION
+// ============================================================
+function initScrollLineAnimation() {
+    gsap.registerPlugin(ScrollTrigger);
+    const path = document.querySelector('.scroll-path-fill');
+    if (!path) return;
+
+    const pathLength = path.getTotalLength();
+    path.style.strokeDasharray = pathLength;
+    path.style.strokeDashoffset = pathLength;
+
+    gsap.to(path, {
+        strokeDashoffset: 0,
+        ease: 'none',
+        scrollTrigger: {
+            trigger: '.story-overlap',
+            start: 'top 50%',
+            end: 'bottom 80%',
+            scrub: true
+        }
+    });
+}
+initScrollLineAnimation();
+window.initScrollLineAnimation = initScrollLineAnimation;
+
+// ============================================================
 // TIMELINE GSAP ANIMATION
 // ============================================================
 function initTimelineAnimation() {
