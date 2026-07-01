@@ -2,6 +2,26 @@
 // GLOBAL SHARED LOGIC
 // ============================================================
 
+// Safe Storage helper to prevent crashes when sessionStorage/localStorage is blocked
+const safeStorage = {
+    _data: {},
+    getItem(key) {
+        try {
+            return sessionStorage.getItem(key);
+        } catch (e) {
+            return this._data[key] || null;
+        }
+    },
+    setItem(key, value) {
+        try {
+            sessionStorage.setItem(key, value);
+        } catch (e) {
+            this._data[key] = String(value);
+        }
+    }
+};
+window.safeStorage = safeStorage;
+
 document.addEventListener("DOMContentLoaded", () => {
     
     // 1. SMOOTH SCROLLING (LENIS)
@@ -88,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. CYBER MODE TOGGLE LOGIC
     // Moved here to allow global state toggling across all pages
-    window.isCyber = sessionStorage.getItem('cyberModeActive') === 'true';
+    window.isCyber = window.safeStorage.getItem('cyberModeActive') === 'true';
     
     // Apply initial state if already true
     if(window.isCyber) {
@@ -145,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function toggleTheme() {
         window.isCyber = !window.isCyber;
-        sessionStorage.setItem('cyberModeActive', window.isCyber);
+        window.safeStorage.setItem('cyberModeActive', window.isCyber);
 
         const btn = document.getElementById('modeToggle');
         const webdevContent = document.getElementById('webdev-content');

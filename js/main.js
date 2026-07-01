@@ -392,7 +392,7 @@ function scrambleText(element, finalString, duration = 1500) {
 // ============================================================
 window.addEventListener('load', () => {
     const navType = performance.getEntriesByType("navigation")[0]?.type;
-    const hasLoaded = sessionStorage.getItem('hasLoaded');
+    const hasLoaded = window.safeStorage.getItem('hasLoaded');
 
     if (hasLoaded && navType !== 'reload') {
         const loader = document.getElementById('loader-overlay');
@@ -423,7 +423,7 @@ window.addEventListener('load', () => {
         return;
     }
 
-    sessionStorage.setItem('hasLoaded', 'true');
+    window.safeStorage.setItem('hasLoaded', 'true');
 
     document.body.style.overflow = 'hidden';
     if(window.lenis) window.lenis.stop(); // Pause smooth scrolling during load
