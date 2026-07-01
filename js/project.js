@@ -108,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initProjectAnimations() {
+    if (typeof gsap === 'undefined') return;
     // Hide Loader
     const tlLoader = gsap.timeline();
     tlLoader.to('.loader-logo', { opacity: 0, duration: 0.5 })
@@ -168,7 +169,9 @@ function initProjectAnimations() {
     });
 
     // GSAP Scroll Reveals
-    gsap.registerPlugin(ScrollTrigger);
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+    }
     
     const reveals = document.querySelectorAll('.reveal');
     reveals.forEach(el => {
@@ -222,7 +225,9 @@ function initProjectAnimations() {
 
     // Refresh ScrollTrigger to catch any missed layout recalculations
     setTimeout(() => {
-        ScrollTrigger.refresh();
+        if (typeof ScrollTrigger !== 'undefined') {
+            ScrollTrigger.refresh();
+        }
     }, 500);
 
     // Horizontal scroll for gallery with Zoom Effect

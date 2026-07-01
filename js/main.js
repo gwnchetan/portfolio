@@ -141,6 +141,7 @@ renderCards(cyProjects, 'cy-projects-grid');
 // PROJECT CARD SCROLL ANIMATION (GSAP SCROLLTRIGGER)
 // ============================================================
 function initScrollCardsAnimation() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
     gsap.registerPlugin(ScrollTrigger);
 
     ScrollTrigger.getAll().forEach(t => {
@@ -174,6 +175,7 @@ initScrollCardsAnimation();
 // SCROLL-DRAWN LINE GSAP ANIMATION
 // ============================================================
 function initScrollLineAnimation() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
     gsap.registerPlugin(ScrollTrigger);
     const path = document.querySelector('.scroll-path-fill');
     if (!path) return;
@@ -200,6 +202,7 @@ window.initScrollLineAnimation = initScrollLineAnimation;
 // TIMELINE GSAP ANIMATION
 // ============================================================
 function initTimelineAnimation() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
     gsap.registerPlugin(ScrollTrigger);
 
     const container = document.querySelector('.timeline-container');
@@ -399,14 +402,16 @@ window.addEventListener('load', () => {
         gsap.set('nav, .hero-tag, .hero-sub, .hero-scroll, .hero-visual, .hero-eyebrow, .hero-marketing-sub, .typo-line', { opacity: 1, y: 0, x: 0 });
         gsap.set('.hero-name', { opacity: 1 });
 
-        Shery.textAnimate(".hero-name", {
-            style: 2,
-            y: 10,
-            delay: 0.1,
-            duration: 1,
-            ease: "cubic-bezier(0.23, 1, 0.320, 1)",
-            multiplier: 0.1,
-        });
+        if (typeof Shery !== 'undefined') {
+            Shery.textAnimate(".hero-name", {
+                style: 2,
+                y: 10,
+                delay: 0.1,
+                duration: 1,
+                ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+                multiplier: 0.1,
+            });
+        }
 
         // Start continuous floating animations
         gsap.to(".hero-tag", { y: -8, rotation: 0.01, force3D: true, duration: 2.5, repeat: -1, yoyo: true, ease: "sine.inOut" });
@@ -414,7 +419,7 @@ window.addEventListener('load', () => {
         gsap.to(".hero-scroll", { y: 8, rotation: 0.01, force3D: true, duration: 1.5, repeat: -1, yoyo: true, ease: "sine.inOut" });
         gsap.to(".hero-visual", { y: -12, rotation: 0.01, force3D: true, duration: 3, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 0.4 });
 
-        ScrollTrigger.refresh();
+        if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
         return;
     }
 
@@ -474,14 +479,16 @@ window.addEventListener('load', () => {
         .from('nav', { y: -20, opacity: 0, duration: 0.8, ease: 'power3.out' }, "-=0.4")
         .set('.hero-name', { opacity: 1 }, "-=0.6")
         .add(() => {
-            Shery.textAnimate(".hero-name", {
-                style: 2,
-                y: 10,
-                delay: 0.1,
-                duration: 1,
-                ease: "cubic-bezier(0.23, 1, 0.320, 1)",
-                multiplier: 0.1,
-            });
+            if (typeof Shery !== 'undefined') {
+                Shery.textAnimate(".hero-name", {
+                    style: 2,
+                    y: 10,
+                    delay: 0.1,
+                    duration: 1,
+                    ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+                    multiplier: 0.1,
+                });
+            }
         }, "-=0.6")
         .from('.hero-tag, .hero-sub, .hero-scroll, .hero-eyebrow, .hero-marketing-sub', { y: 20, opacity: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out' }, "-=0.8")
         .from('.typo-line', { y: 40, opacity: 0, duration: 1, stagger: 0.1, ease: 'power3.out' }, "-=0.8")
@@ -494,7 +501,7 @@ window.addEventListener('load', () => {
             gsap.to(".hero-visual", { y: -12, rotation: 0.01, force3D: true, duration: 3, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 0.4 });
 
             // Refresh ScrollTrigger to calculate initial positions after content and styling have settled
-            ScrollTrigger.refresh();
+            if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
         });
 });
 

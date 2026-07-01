@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    if (typeof gsap === 'undefined') return;
     // Basic GSAP timeline for entry animations
     // Added a slight delay so the browser can finish painting and loading fonts/particles
     const tl = gsap.timeline({ delay: 0.4 });
@@ -133,7 +134,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // ============================================================
     // STORY SECTIONS GSAP SCROLLTRIGGER
     // ============================================================
-    gsap.registerPlugin(ScrollTrigger);
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+    }
 
     const revealElements = document.querySelectorAll('.reveal-text');
 
