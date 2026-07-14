@@ -6,6 +6,61 @@
     box-sizing: border-box;
 }
 
+/* === CUSTOM SCROLLBAR === */
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0d0d0d;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #e55a39;
+    border-radius: 10px;
+    border: 2px solid #0d0d0d;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px rgba(229, 90, 57, 0.4);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff6b47;
+    width: 14px;
+    box-shadow: 0 0 12px rgba(229, 90, 57, 0.8);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: #ff7e5f;
+    box-shadow: 0 0 16px rgba(229, 90, 57, 1);
+}
+
+/* Firefox */
+* {
+    scrollbar-color: #e55a39 #0d0d0d;
+    scrollbar-width: thin;
+}
+
+/* Cyber mode scrollbar */
+body.cyber-mode::-webkit-scrollbar-thumb {
+    background: #00ff41;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
+}
+
+body.cyber-mode::-webkit-scrollbar-thumb:hover {
+    background: #00ff41;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 1);
+    width: 14px;
+}
+
+body.cyber-mode::-webkit-scrollbar-thumb:active {
+    box-shadow: 0 0 25px rgba(0, 255, 65, 1);
+}
+
+body.cyber-mode {
+    scrollbar-color: #00ff41 #0d0d0d;
+}
+
 /* html { scroll-behavior: smooth; } Disabled for Lenis */
 
 body {

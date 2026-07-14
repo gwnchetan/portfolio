@@ -17,7 +17,7 @@ const footerHTML = `
                         <a href="mailto:csakre634@gmail.com" class="discuss-btn">
                             Discuss your project <i class="ph-fill ph-caret-right"></i>
                         </a>
-                        <a href="doc/Resume.pdf" download="Chetan_Resume.pdf" class="discuss-btn" style="background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #fff;">
+                        <a href="doc/Chandrbhan_Sakre_Full_Stack_Developer_Resume.pdf" download="Chetan_Resume.pdf" class="discuss-btn" style="background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #fff;">
                             Resume <i class="ph ph-download-simple"></i>
                         </a>
                     </div>

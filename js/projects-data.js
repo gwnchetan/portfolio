@@ -77,9 +77,41 @@ const projectsData = {
         github: 'https://github.com/gwnchetan/outfy',
         live: null,
         type: 'wd'
+    },
+    'outfy-website': {
+        id: 'outfy-website',
+        name: 'Outfy',
+        tag: 'Premium E-Commerce',
+        logo: 'images/projects/outfy-website/logo.png',
+        heroImage: 'images/projects/outfy-website/logo.png',
+        videoDemo: null,
+        screenshots: [
+            'images/projects/outfy-website/authpage.png',
+            'images/projects/outfy-website/home.png',
+            'images/projects/outfy-website/home2.png',
+            'images/projects/outfy-website/home3.png',
+            'images/projects/outfy-website/store.png',
+            'images/projects/outfy-website/productdetails.png',
+            'images/projects/outfy-website/admin dashboard.png'
+        ],
+        desc: 'A premium fashion e-commerce platform with a sleek dark-gold experience, secure authentication, cart and wishlist flows, real-time order tracking, and an admin dashboard.',
+        details: 'Outfy is a modern e-commerce experience built for fashion retail with interactive storefront discovery, secure user authentication, dynamic cart and wishlist behavior, real-time order progress, and a fully featured admin panel for catalogs and orders.',
+        role: 'Full-stack Developer. Built the client experience and contributed to the authentication, cart, order, and admin management flows for the platform.',
+        features: [
+            'Interactive shopfront with category filters, search, and animated showcases',
+            'Persistent cart and wishlist support with authenticated sync',
+            'Email OTP verification and Google OAuth sign-in',
+            'JWT-based authorization with secure cookie handling',
+            'Real-time order tracking and admin dashboard insights',
+            'Product catalog CRUD and controlled order flow management'
+        ],
+        stack: ['React', 'Vite', 'Node.js', 'Express.js', 'MongoDB', 'Mongoose', 'JWT', 'bcryptjs'],
+        github: 'https://github.com/gwnchetan/OUTFY-website',
+        live: 'https://outfy-website.vercel.app/',
+        type: 'wd'
     }
 };
 
 // Also define order for grids
-const wdProjectsOrder = ['chatterbox', 'outfy'];
+const wdProjectsOrder = ['chatterbox', 'outfy', 'outfy-website'];
 const cyProjectsOrder = [];

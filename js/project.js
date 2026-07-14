@@ -41,9 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Links
     const liveLink = document.getElementById('proj-live');
+    const liveLinkAlt = document.getElementById('proj-live-link');
     if (project.live && project.live !== '#') {
         liveLink.href = project.live;
         liveLink.style.display = 'inline-flex';
+
+        if (project.id === 'outfy-website') {
+            liveLinkAlt.href = project.live;
+            liveLinkAlt.style.display = 'inline-flex';
+        }
     }
 
     const githubLink = document.getElementById('proj-github');
