@@ -41,8 +41,7 @@ Since this project relies on ES6 modules and WebGL, it should be run through a l
 1. Clone the repository:
    ```bash
    git clone https://github.com/gwnchetan/portfolio.git
-   cd portfolio/mywebsite
-   ```
+    ```
 
 2. Start a local server:
    - Using Python: `python -m http.server 8000`
